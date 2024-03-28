@@ -1,0 +1,25 @@
+{
+    "name": "norman-huth/php-library",
+    "description": "Personal library for PHP and Laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "NormanHuth\\Library\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Norman Huth",
+            "homepage": "https://huth.it"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0",
+        "nesbot/carbon": "^2.5|^3.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.15"
+    }
+}
