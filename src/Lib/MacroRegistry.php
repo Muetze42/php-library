@@ -13,12 +13,12 @@ class MacroRegistry
     /**
      * Register all custom macro using invokable class in given path.
      */
-    public static function registerInvokableMacrosInPath(string $path, string $target): void
+    public static function registerInvokableMacrosInPath(string $path, string $target, ?string $namespace = null): void
     {
         /* @var \Illuminate\Support\Traits\Macroable|string $target */
         collect(ClassFinder::load(
             paths: $path,
-            namespace: 'NormanHuth\Library\Macros\\' . basename($path),
+            namespace: $namespace,
             basePath: $path
         ))->each(fn ($class) => static::macro($class, $target));
     }
@@ -58,7 +58,8 @@ class MacroRegistry
     {
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Str',
-            Str::class
+            Str::class,
+            'NormanHuth\Library\Macros\Str'
         );
     }
 
@@ -69,7 +70,8 @@ class MacroRegistry
     {
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Arr',
-            Arr::class
+            Arr::class,
+            'NormanHuth\Library\Macros\Arr'
         );
     }
 
@@ -80,7 +82,8 @@ class MacroRegistry
     {
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Number',
-            Number::class
+            Number::class,
+            'NormanHuth\Library\Macros\Number'
         );
     }
 
@@ -91,7 +94,8 @@ class MacroRegistry
     {
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Http/Response',
-            Response::class
+            Response::class,
+            'NormanHuth\Library\Macros\Http\Response'
         );
     }
 }
