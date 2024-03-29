@@ -41,6 +41,18 @@ class MacroRegistry
     }
 
     /**
+     * Register an array of custom macros using invokable class.
+     *
+     * @param array{class-string}  $macroClasses
+     */
+    public static function macros(array $macroClasses): void
+    {
+        foreach ($macroClasses as $macroClass) {
+            static::macro($macroClass, $macroClass);
+        }
+    }
+
+    /**
      * Register all macros.
      */
     public static function registerAllMacros(): void
