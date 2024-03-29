@@ -80,9 +80,9 @@ class ClassFinder
         $basePath = rtrim($basePath, '/\\');
 
         return $namespace . str_replace(
-                ['/', '.php'],
-                ['\\', ''],
-                Str::after($file->getRealPath(), realpath($basePath) . DIRECTORY_SEPARATOR)
-            );
+            ['/', '.php'],
+            ['\\', ''],
+            Str::after($file->getRealPath(), realpath($basePath) . DIRECTORY_SEPARATOR)
+        );
     }
 }

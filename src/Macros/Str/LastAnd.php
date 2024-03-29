@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Macros\Arr;
+namespace NormanHuth\Library\Macros\Str;
 
 use Closure;
 use Illuminate\Support\Arr;
