@@ -16,7 +16,7 @@ class AppTimezone
      */
     public function __invoke(): Closure
     {
-        return function (Request $request): Carbon {
+        return function (): Carbon {
             if ($timezone = config('app.public_timezone')) {
                 return $this->tz($timezone);
             }
