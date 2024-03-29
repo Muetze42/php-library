@@ -32,7 +32,9 @@ class SentryTunnelController
 
         $response = Http::withBody($envelope, 'application/x-sentry-envelope')->post($url);
 
-        //Log::driver('sentry')->error($envelope); Todo
+        if (config('logging.channels.sentry')) {
+            Log::driver('sentry')->error($envelope);
+        }
 
         return response()->json($response->json(), $response->status());
     }
