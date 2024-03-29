@@ -1,0 +1,40 @@
+<?php
+/* @noinspection ALL */
+// @formatter:off
+// phpcs:ignoreFile
+
+namespace Illuminate\Support {
+    class Carbon {
+        /**
+         * @see \NormanHuth\Library\Macros\Carbon\AppTimezone::__invoke()
+         */
+        public function appTimezone(): \Illuminate\Support\Carbon
+        {
+            return \Illuminate\Support\Carbon\appTimezone();
+        }
+
+        /**
+         * @see \NormanHuth\Library\Macros\Carbon\ResolveTimezone::__invoke()
+         */
+        public function resolveTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
+        {
+            return \Illuminate\Support\Carbon\resolveTimezone($request);
+        }
+
+        /**
+         * @see \NormanHuth\Library\Macros\Carbon\SessionTimezone::__invoke()
+         */
+        public function sessionTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
+        {
+            return \Illuminate\Support\Carbon\sessionTimezone($request);
+        }
+
+        /**
+         * @see \NormanHuth\Library\Macros\Carbon\UserTimezone::__invoke()
+         */
+        public function userTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
+        {
+            return \Illuminate\Support\Carbon\sessionTimezone($request);
+        }
+    }
+}
