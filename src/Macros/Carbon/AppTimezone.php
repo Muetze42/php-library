@@ -4,7 +4,6 @@ namespace NormanHuth\Library\Macros\Carbon;
 
 use Closure;
 use Illuminate\Http\Carbon;
-use Illuminate\Http\Request;
 
 /**
  * @mixin \Illuminate\Support\Carbon
