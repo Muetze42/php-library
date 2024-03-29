@@ -3,8 +3,8 @@
 namespace NormanHuth\Library\Macros\Carbon;
 
 use Closure;
-use Illuminate\Http\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 /**
  * @mixin \Illuminate\Support\Carbon
