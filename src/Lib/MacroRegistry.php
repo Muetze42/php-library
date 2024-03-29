@@ -43,7 +43,7 @@ class MacroRegistry
     /**
      * Register an array of custom macros using invokable class.
      *
-     * @param array{class-string: class-string}  $macroMacroableClasses
+     *  @param array<class-string, class-string>  $macroMacroableClasses
      */
     public static function macros(array $macroMacroableClasses): void
     {
