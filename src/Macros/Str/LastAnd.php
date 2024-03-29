@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Arr;
 
 /**
- * @mixin \Illuminate\Support\Arr
+ * @mixin \Illuminate\Support\Str
  */
 class LastAnd
 {
