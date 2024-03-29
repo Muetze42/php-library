@@ -45,10 +45,23 @@ class MacroRegistry
      */
     public static function registerAllMacros(): void
     {
+        static::registerCarbonMacros();
         static::registerArrMacros();
         static::registerHttpResponseMacros();
         static::registerNumberMacros();
         static::registerStrMacros();
+    }
+
+    /**
+     * Register all string macros.
+     */
+    public static function registerCarbonMacros(): void
+    {
+        static::registerInvokableMacrosInPath(
+            dirname(__FILE__, 2) . '/Macros/Carbon',
+            Str::class,
+            'NormanHuth\Library\Macros\Carbon'
+        );
     }
 
     /**

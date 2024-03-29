@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 
 class DisposableEmailRule implements ValidationRule
 {
+    protected string $translationKey = 'validation.custom.disposable_email';
+
     /**
      * Run the validation rule.
      *
@@ -28,7 +30,7 @@ class DisposableEmailRule implements ValidationRule
             $value = Str::lower(trim($value));
             $parts = explode('@', $value);
             if (empty($parts[1]) || in_array($parts[1], $domains)) {
-                $fail('Disposable and temporary email addresses are not allowed.')->translate();
+                $fail($this->translationKey)->translate(['attribute' => $value]);
             }
         }
     }
