@@ -7,27 +7,27 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'app:update-disposable-email-domains')]
-class UpdateDisposableEmailDomainsCommand extends Command
+#[AsCommand(name: 'app:update-top-level-domain-list')]
+class UpdateTopLevelDomainListCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:update-disposable-email-domains';
+    protected $signature = 'app:update-top-level-domain-list';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update disposable email domains';
+    protected $description = 'Update Top-Level Domains list';
 
     /**
      * The source of the data.
      */
-    protected string $source = 'https://cdn.jsdelivr.net/gh/disposable/disposable-email-domains@master/domains.json';
+    protected string $source = 'https://data.iana.org/TLD/tlds-alpha-by-domain.txt';
 
     /**
      * Execute the console command.
@@ -35,10 +35,10 @@ class UpdateDisposableEmailDomainsCommand extends Command
     public function handle(): void
     {
         Storage::put(
-            'disposable-email-domains.json',
+            'top-level-domains.txt',
             Http::get($this->source)->body()
         );
 
-        $this->components->info('Successfully updated disposable Email Domains');
+        $this->components->info('Successfully updated Top-Level Domains list');
     }
 }

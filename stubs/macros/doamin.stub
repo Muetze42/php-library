@@ -2,8 +2,10 @@
 
 use Closure;
 use Exception;
-use Pdp\Domain as PdpDomain;
-use Pdp\TopLevelDomains;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
+
+// Using https://github.com/jeremykendall/php-domain-parser
 
 /**
  * @mixin \Illuminate\Support\Str
@@ -21,8 +23,14 @@ class Domain
             }
 
             try {
-                $topLevelDomains = TopLevelDomains::fromPath(__DIR__ . 'tlds-alpha-by-domain.txt');
-                $domain = PdpDomain::fromIDNA2008(parse_url($url, PHP_URL_HOST));
+                // Source: https://data.iana.org/TLD/tlds-alpha-by-domain.txt
+                $path = 'top-level-domains.txt';
+                if (Storage::missing($path)) {
+                    Artisan::call('app:update-top-level-domain-list');
+                }
+
+                $topLevelDomains = \Pdp\TopLevelDomains::fromPath(Storage::get($path));
+                $domain = \Pdp\Domain::fromIDNA2008(parse_url($url, PHP_URL_HOST));
 
                 $result = $topLevelDomains->resolve($domain);
 
