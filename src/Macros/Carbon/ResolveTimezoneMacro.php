@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 /**
  * @mixin \Illuminate\Support\Carbon
  */
-class ResolveTimezone
+class ResolveTimezoneMacro
 {
     /**
      * Get index number of an integer.

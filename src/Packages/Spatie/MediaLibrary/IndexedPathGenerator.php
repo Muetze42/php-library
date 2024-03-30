@@ -5,7 +5,7 @@ namespace NormanHuth\Library\Packages\Spatie\MediaLibrary;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use NormanHuth\Library\Lib\MacroRegistry;
-use NormanHuth\Library\Macros\Number\IndexNumber;
+use NormanHuth\Library\Macros\Number\IndexNumberMacro;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 
@@ -54,7 +54,7 @@ class IndexedPathGenerator implements PathGenerator
      */
     protected function getIndexNumber(int $key): int
     {
-        MacroRegistry::macro(IndexNumber::class, Number::class);
+        MacroRegistry::macro(IndexNumberMacro::class, Number::class);
 
         /** @noinspection PhpUndefinedMethodInspection */
         return Number::indexNumber($key);

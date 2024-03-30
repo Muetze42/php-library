@@ -7,7 +7,7 @@ use Closure;
 /**
  * @mixin \Illuminate\Support\Arr
  */
-class ToJsonPretty
+class ToJsonPrettyMacro
 {
     /**
      * Returns the JSON representation pretty and unescaped of a value.

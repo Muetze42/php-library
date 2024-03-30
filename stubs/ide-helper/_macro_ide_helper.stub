@@ -8,9 +8,14 @@ namespace Illuminate\Support {
         /**
          * @see \NormanHuth\Library\Macros\Carbon\AppTimezone::__invoke()
          */
-        public function appTimezone(): \Illuminate\Support\Carbon
+        public function toAppTimezone(): \Illuminate\Support\Carbon
         {
-            return \Illuminate\Support\Carbon\appTimezone();
+            /** @var \Illuminate\Support\Carbon $instance */
+            if ($timezone = config('app.public_timezone')) {
+                return $instance->tz($timezone);
+            }
+
+            return $instance;
         }
 
         /**
@@ -18,23 +23,44 @@ namespace Illuminate\Support {
          */
         public function resolveTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
         {
-            return \Illuminate\Support\Carbon\resolveTimezone($request);
+            /** @var \Illuminate\Support\Carbon $instance */
+            if ($timezone = $request->session()?->get('timezone')) {
+                return $instance->tz($timezone);
+            }
+            if ($timezone = $request->user()?->timezone) {
+                return $instance->tz($timezone);
+            }
+            if ($timezone = config('app.public_timezone')) {
+                return $instance->tz($timezone);
+            }
+
+            return $instance;
         }
 
         /**
          * @see \NormanHuth\Library\Macros\Carbon\SessionTimezone::__invoke()
          */
-        public function sessionTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
+        public function toSessionTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
         {
-            return \Illuminate\Support\Carbon\sessionTimezone($request);
+            /** @var \Illuminate\Support\Carbon $instance */
+            if ($timezone = $request->session()?->get('timezone')) {
+                return $instance->tz($timezone);
+            }
+
+            return $instance;
         }
 
         /**
          * @see \NormanHuth\Library\Macros\Carbon\UserTimezone::__invoke()
          */
-        public function userTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
+        public function toUserTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
         {
-            return \Illuminate\Support\Carbon\sessionTimezone($request);
+            /** @var \Illuminate\Support\Carbon $instance */
+            if ($instance = $request->user()?->timezone) {
+                return $this->tz($timezone);
+            }
+
+            return $instance;
         }
     }
 }

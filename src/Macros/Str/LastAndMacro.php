@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 /**
  * @mixin \Illuminate\Support\Str
  */
-class LastAnd
+class LastAndMacro
 {
     /**
      * Replace the last comma in a list with `and`.

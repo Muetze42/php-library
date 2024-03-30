@@ -7,7 +7,7 @@ use Closure;
 /**
  * @mixin \Illuminate\Support\Number
  */
-class CeilUpNearest
+class CeilUpNearestMacro
 {
     /**
      * Round up to the nearest multiple of `E`.

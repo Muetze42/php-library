@@ -7,7 +7,7 @@ use Closure;
 /**
  * @mixin \Illuminate\Support\Number
  */
-class IndexNumber
+class IndexNumberMacro
 {
     /**
      * Get index number of an integer.

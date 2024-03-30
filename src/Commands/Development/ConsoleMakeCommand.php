@@ -25,7 +25,7 @@ class ConsoleMakeCommand extends Command
         if (!$command) {
             $command = Str::of($this->rootNamespace())->classBasename()->lower()->value();
 
-            if (str_ends_with($name, 'Command')) {
+            if (str_ends_with($name, 'Command') && strlen($name) > 7) {
                 $name = substr($name, 0, -7);
             }
 

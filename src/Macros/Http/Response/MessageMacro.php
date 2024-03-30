@@ -7,7 +7,7 @@ use Closure;
 /**
  * @mixin \Illuminate\Http\Client\Response
  */
-class Message
+class MessageMacro
 {
     /**
      * Try to get the JSON decoded body of the response as an array or scalar value.

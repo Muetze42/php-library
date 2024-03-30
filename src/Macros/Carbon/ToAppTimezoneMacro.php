@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 /**
  * @mixin \Illuminate\Support\Carbon
  */
-class AppTimezone
+class ToAppTimezoneMacro
 {
     /**
      * Get index number of an integer.

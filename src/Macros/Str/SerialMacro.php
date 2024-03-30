@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @mixin \Illuminate\Support\Str
  */
-class Serial
+class SerialMacro
 {
     /**
      * Generate a serial number.

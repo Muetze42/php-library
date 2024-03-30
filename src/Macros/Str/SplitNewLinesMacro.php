@@ -7,7 +7,7 @@ use Closure;
 /**
  * @mixin \Illuminate\Support\Str
  */
-class SplitNewLines
+class SplitNewLinesMacro
 {
     /**
      * Split string by new lines.

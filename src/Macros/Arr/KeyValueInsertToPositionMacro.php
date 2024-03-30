@@ -7,7 +7,7 @@ use Closure;
 /**
  * @mixin \Illuminate\Support\Arr
  */
-class KeyValueInsertToPosition
+class KeyValueInsertToPositionMacro
 {
     /**
      * Add an array key value pair to specific position into an existing key value array.

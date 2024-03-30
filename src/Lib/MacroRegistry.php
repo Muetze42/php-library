@@ -30,6 +30,10 @@ class MacroRegistry
     {
         $method = lcfirst(class_basename($macroClass));
 
+        if (str_ends_with($method, 'Macro') && strlen($method) > 5) {
+            $method = substr($method, 0, -5);
+        }
+
         /**
          * @var \Illuminate\Support\Traits\Macroable $macroableClass
          */
