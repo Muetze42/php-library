@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Macros\Arr;
+namespace NormanHuth\Library\Support\Macros\Arr;
 
 use Closure;
 

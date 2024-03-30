@@ -74,9 +74,9 @@ class MacroRegistry
     public static function registerCarbonMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Macros/Carbon',
+            dirname(__FILE__, 2) . '/Support/Macros/Carbon',
             Str::class,
-            'NormanHuth\Library\Macros\Carbon'
+            ' NormanHuth\Library\Support\Macros\Carbon'
         );
     }
 
@@ -88,7 +88,7 @@ class MacroRegistry
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Str',
             Str::class,
-            'NormanHuth\Library\Macros\Str'
+            ' NormanHuth\Library\Support\Macros\Str'
         );
     }
 
@@ -100,7 +100,7 @@ class MacroRegistry
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Arr',
             Arr::class,
-            'NormanHuth\Library\Macros\Arr'
+            ' NormanHuth\Library\Support\Macros\Arr'
         );
     }
 
@@ -112,7 +112,7 @@ class MacroRegistry
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Number',
             Number::class,
-            'NormanHuth\Library\Macros\Number'
+            ' NormanHuth\Library\Support\Macros\Number'
         );
     }
 
@@ -124,7 +124,7 @@ class MacroRegistry
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Macros/Http/Response',
             Response::class,
-            'NormanHuth\Library\Macros\Http\Response'
+            ' NormanHuth\Library\Support\Macros\Http\Response'
         );
     }
 }

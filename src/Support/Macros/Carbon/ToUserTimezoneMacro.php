@@ -1,15 +1,15 @@
 <?php
 
-namespace NormanHuth\Library\Macros\Carbon;
+namespace NormanHuth\Library\Support\Macros\Carbon;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 /**
- * @mixin \Illuminate\Support\Carbon
+ * @mixin \Illuminate\Support\Carbon;
  */
-class ResolveTimezoneMacro
+class ToUserTimezoneMacro
 {
     /**
      * Get index number of an integer.
@@ -17,13 +17,7 @@ class ResolveTimezoneMacro
     public function __invoke(): Closure
     {
         return function (Request $request): Carbon {
-            if ($timezone = $request->session()?->get('timezone')) {
-                return $this->tz($timezone);
-            }
             if ($timezone = $request->user()?->timezone) {
-                return $this->tz($timezone);
-            }
-            if ($timezone = config('app.public_timezone')) {
                 return $this->tz($timezone);
             }
 

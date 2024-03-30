@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Macros\Http\Response;
+namespace NormanHuth\Library\Support\Macros\Http\Response;
 
 use Closure;
 

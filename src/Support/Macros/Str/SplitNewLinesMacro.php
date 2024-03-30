@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Macros\Str;
+namespace NormanHuth\Library\Support\Macros\Str;
 
 use Closure;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Macros\Number;
+namespace NormanHuth\Library\Support\Macros\Number;
 
 use Closure;
 

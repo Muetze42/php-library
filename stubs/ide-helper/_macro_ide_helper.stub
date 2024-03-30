@@ -6,7 +6,7 @@
 namespace Illuminate\Support {
     class Carbon {
         /**
-         * @see \NormanHuth\Library\Macros\Carbon\AppTimezone::__invoke()
+         * @see \NormanHuth\Library\Support\Macros\Carbon\ToAppTimezoneMacro::__invoke()
          */
         public function toAppTimezone(): \Illuminate\Support\Carbon
         {
@@ -19,7 +19,7 @@ namespace Illuminate\Support {
         }
 
         /**
-         * @see \NormanHuth\Library\Macros\Carbon\ResolveTimezone::__invoke()
+         * @see \NormanHuth\Library\Support\Macros\Carbon\ResolveTimezoneMacro::__invoke()
          */
         public function resolveTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
         {
@@ -38,7 +38,7 @@ namespace Illuminate\Support {
         }
 
         /**
-         * @see \NormanHuth\Library\Macros\Carbon\SessionTimezone::__invoke()
+         * @see \NormanHuth\Library\Support\Macros\Carbon\ToSessionTimezoneMacro::__invoke()
          */
         public function toSessionTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
         {
@@ -51,7 +51,7 @@ namespace Illuminate\Support {
         }
 
         /**
-         * @see \NormanHuth\Library\Macros\Carbon\UserTimezone::__invoke()
+         * @see \NormanHuth\Library\Support\Macros\Carbon\ToUserTimezoneMacro::__invoke()
          */
         public function toUserTimezone(\Illuminate\Http\Request $request): \Illuminate\Support\Carbon
         {
