@@ -6,58 +6,63 @@ use Illuminate\Support\Arr;
 
 class ComposerJson
 {
-    public static array $structure = [
+    /**
+     * The composer.json properties ordered by https://schema.org.
+     *
+     * @var array|string[]
+     */
+    public static array $properties = [
         'name',
-        'type',
         'description',
+        'license',
+        'type',
+        'abandoned',
         'version',
+        'default-branch',
+        'non-feature-branches',
         'keywords',
-        'homepage',
         'readme',
+        'time',
+        'authors',
+        'homepage',
         'support',
         'funding',
-        'time',
-        'license',
-        'authors',
+        'source',
+        'dist',
+        '_comment',
         'require',
         'require-dev',
-        'autoload',
-        'autoload-dev',
-        'repositories',
-        'conflict',
         'replace',
+        'conflict',
         'provide',
         'suggest',
-        'config',
-        'extra',
-        'bin',
-        'include-path',
-        'target-dir',
-        'scripts',
-        'scripts-descriptions',
+        'repositories',
         'minimum-stability',
         'prefer-stable',
+        'autoload',
+        'autoload-dev',
+        'target-dir',
+        'include-path',
+        'bin',
         'archive',
-        'abandoned',
-        '_comment',
-        'non-feature-branches',
+        'php-ext',
+        'config',
+        'extra',
+        'scripts',
+        'scripts-descriptions',
+        'scripts-aliases',
     ];
 
-    public static function setStructure(array $structure): void
+    public static function sort(array $data, bool $sortPackages = true, bool $sortKeywords = true): array
     {
-        static::$structure = $structure;
-    }
-
-    public static function sort(array $data): array
-    {
-        $structure = Arr::mapWithKeys(
-            static::$structure,
+        $properties = Arr::mapWithKeys(
+            static::$properties,
             fn (string $value, int $key) => [$value => sprintf('%02d', $key)]
         );
 
         $data = Arr::mapWithKeys(
             $data,
-            fn (mixed $item, string $key) => [data_get($structure, $key, 99) . $key => $item]
+            fn (mixed $item, string $key) => [data_get($properties, $key, 99) . $key => $item]
         );
 
         ksort($data);
@@ -67,21 +72,25 @@ class ComposerJson
             fn (mixed $item, string $key) => [substr($key, 2) => $item]
         );
 
-        foreach (['require', 'require-dev'] as $property) {
-            if (empty($data[$property])) {
-                continue;
+        if ($sortPackages) {
+            foreach (['require', 'require-dev'] as $property) {
+                if (empty($data[$property])) {
+                    continue;
+                }
+                data_set($data, $property, static::sortPackages($data[$property]));
             }
-            data_set($data, $property, static::sortRequirements($data[$property]));
         }
 
-        if (!empty($data['keywords'])) {
-            $data['keywords'] = array_values(Arr::sort($data['keywords']));
+        if ($sortKeywords) {
+            if (!empty($data['keywords'])) {
+                $data['keywords'] = array_values(Arr::sort($data['keywords']));
+            }
         }
 
         return $data;
     }
 
-    public static function sortRequirements(array $data): array
+    public static function sortPackages(array $data): array
     {
         $data = Arr::mapWithKeys(
             $data,
