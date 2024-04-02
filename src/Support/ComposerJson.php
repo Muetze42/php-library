@@ -50,14 +50,14 @@ class ComposerJson
 
     public static function sort(array $data): array
     {
-        static::$structure = Arr::mapWithKeys(
+        $structure = Arr::mapWithKeys(
             static::$structure,
             fn (string $value, int $key) => [$value => sprintf('%02d', $key)]
         );
 
         $data = Arr::mapWithKeys(
             $data,
-            fn (mixed $item, string $key) => [data_get(static::$structure, $key, 99) . $key => $item]
+            fn (mixed $item, string $key) => [data_get($structure, $key, 99) . $key => $item]
         );
 
         ksort($data);
