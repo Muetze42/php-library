@@ -39,10 +39,6 @@ class ClassFinder
 
         $classes = [];
 
-        print_r(
-            Filesystem::allFiles($paths)
-        );
-
         foreach (Filesystem::allFiles($paths, '*.php') as $file) {
             $class = static::classFromFile($file);
 
