@@ -9,17 +9,15 @@ use NormanHuth\Library\Lib\MacroRegistry;
 use NormanHuth\Library\Support\Macros\Str\SplitNewLinesMacro;
 use ReflectionClass;
 use SplFileInfo;
-use Symfony\Component\Finder\Finder;
+use NormanHuth\Library\Filesystem;
 
 class ClassFinder
 {
     /**
      * Get all classes from the given paths.
      *
-     * @source https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/Kernel.php#L348
-     *
-     * @param string|null  $subClassOf Return classes that has this class as one of its parents or implements it
-     * @param string|null  $classUses  Return classes that use the traits used by the given class
+     * @param  string|null  $subClassOf  Return classes that has this class as one of its parents or implements it
+     * @param  string|null  $classUses  Return classes that use the traits used by the given class
      */
     public static function load(
         array|string $paths,
@@ -42,7 +40,11 @@ class ClassFinder
 
         $classes = [];
 
-        foreach (Finder::create()->in($paths)->files()->name('*.php') as $file) {
+        print_r(
+            Filesystem::allFiles($paths)
+        );
+
+        foreach (Filesystem::allFiles($paths, '*.php') as $file) {
             $class = static::classFromFile($file);
 
             if (!class_exists($class)) {
@@ -69,14 +71,14 @@ class ClassFinder
      *
      * @throws \RuntimeException
      */
-    public static function classFromFile(SplFileInfo $file): string
+    public static function classFromFile(string $file): string
     {
         MacroRegistry::macro(SplitNewLinesMacro::class, Str::class);
 
         /** @noinspection PhpUndefinedMethodInspection */
         $lines = array_map(
             fn (string $lime) =>  preg_replace('/\s+/', ' ', trim($lime)),
-            Str::splitNewLines($file->getContents())
+            Str::splitNewLines(file_get_contents($file))
         );
 
         $namespace = '';
@@ -92,6 +94,6 @@ class ClassFinder
             }
         }
 
-        return $namespace . '\\' . $file->getBasename('.' . $file->getExtension());
+        return $namespace . '\\' . pathinfo($file, PATHINFO_FILENAME);
     }
 }

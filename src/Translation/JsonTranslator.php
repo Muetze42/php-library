@@ -10,7 +10,7 @@ class JsonTranslator
      * Get all JSON translation.
      */
     public static function getJsonTranslations(
-        string $locale = null,
+        ?string $locale = null,
         string $group = '*',
         ?string $namespace = '*'
     ): array {
