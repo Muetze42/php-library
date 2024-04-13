@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Support;
+namespace NormanHuth\Library\Core;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
