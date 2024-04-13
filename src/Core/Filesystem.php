@@ -5,6 +5,7 @@ namespace NormanHuth\Library\Core;
 use FilesystemIterator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use SplFileInfo;
 
 class Filesystem
 {
@@ -15,15 +16,15 @@ class Filesystem
     {
         $directories = Arr::flatten(Arr::map(
             (array) $paths,
-            fn ($path) => glob(trim($path, '/\\') . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR)
+            fn ($path) => collect(iterator_to_array(new FilesystemIterator($path)))
+                ->filter(function (SplFileInfo $item) {
+                    return $item->isDir() && !$item->isLink();
+                })
+                ->map(fn (SplFileInfo $item) => $item->getPathname())
+                ->when($hidden, fn ($items) => $items->filter(fn ($item) => !Str::startsWith(basename($item), '.')))
+                ->values()
+                ->toArray()
         ));
-
-        if ($hidden) {
-            $directories = Arr::where(
-                $directories,
-                fn ($directory) => !Str::startsWith(basename($directory), '.')
-            );
-        }
 
         foreach ($directories as $directory) {
             $directories = array_merge($directories, $this->allDirectories($directory));
