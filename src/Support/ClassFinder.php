@@ -4,6 +4,9 @@ namespace NormanHuth\Library\Support;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\Deprecated;
+use NormanHuth\Library\Lib\MacroRegistry;
+use NormanHuth\Library\Support\Macros\Str\SplitNewLinesMacro;
 use ReflectionClass;
 use SplFileInfo;
 use Symfony\Component\Finder\Finder;
@@ -22,8 +25,10 @@ class ClassFinder
         array|string $paths,
         ?string $subClassOf = null,
         ?string $classUses = null,
+        #[Deprecated]
         ?string $namespace = null,
-        ?string $basePath = null,
+        #[Deprecated]
+        ?string $basePath = null
     ): array {
         $paths = array_unique(Arr::wrap($paths));
 
@@ -38,7 +43,8 @@ class ClassFinder
         $classes = [];
 
         foreach (Finder::create()->in($paths)->files()->name('*.php') as $file) {
-            $class = static::classFromFile($file, $namespace, $basePath);
+            $class = static::classFromFile($file);
+
             if (!class_exists($class)) {
                 continue;
             }
@@ -61,28 +67,31 @@ class ClassFinder
     /**
      * Extract the class name from the given file path.
      *
-     * @source https://github.com/laravel/framework/blob/11.x/src/Illuminate/Foundation/Console/Kernel.php#L348
+     * @throws \RuntimeException
      */
-    public static function classFromFile(SplFileInfo $file, ?string $namespace = null, ?string $basePath = null): string
+    public static function classFromFile(SplFileInfo $file): string
     {
-        if (!$namespace) {
-            $namespace = app()->getNamespace();
+        MacroRegistry::macro(SplitNewLinesMacro::class, Str::class);
+
+        /** @noinspection PhpUndefinedMethodInspection */
+        $lines = array_map(
+            fn (string $lime) =>  preg_replace('/\s+/', ' ', trim($lime)),
+            Str::splitNewLines($file->getContents())
+        );
+
+        $namespace = '';
+
+        foreach ($lines as $line) {
+            $parts = explode(' ', $line);
+            if ($parts[0] == 'namespace') {
+                $namespace = trim(explode(';', $parts[1])[0]);
+                break;
+            }
+            if (in_array($parts[0], ['class', 'final', 'interface', 'trait', 'abstract'])) {
+                break;
+            }
         }
 
-        if (!$basePath) {
-            $basePath = app_path();
-        }
-
-        if (!str_ends_with($namespace, '\\')) {
-            $namespace .= '\\';
-        }
-
-        $basePath = rtrim($basePath, '/\\');
-
-        return trim($namespace . str_replace(
-            ['/', '.php'],
-            ['\\', ''],
-            Str::after($file->getRealPath(), realpath($basePath) . DIRECTORY_SEPARATOR)
-        ));
+        return $namespace . '\\' . $file->getBasename('.' . $file->getExtension());
     }
 }
