@@ -2,13 +2,14 @@
 
 namespace NormanHuth\Library\Core;
 
+use FilesystemIterator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class Filesystem
 {
     /**
-     * Get all directories from the given paths (recursively).
+     * Get all directories from the given paths (recursive).
      */
     public function allDirectories(string|array $paths, bool $hidden = false): array
     {
@@ -32,7 +33,7 @@ class Filesystem
     }
 
     /**
-     * Get all files from the given paths (recursively).
+     * Get all files from the given paths (recursive).
      */
     public function allFiles(string|array $paths, string $pattern = '*', bool $hidden = false): array
     {
@@ -52,5 +53,31 @@ class Filesystem
         }
 
         return Arr::where($files, fn ($file) => !is_dir($file));
+    }
+
+    /**
+     * Delete the given directory (recursive).
+     */
+    public function deleteDirectory(string $directory): bool
+    {
+        if (!is_dir($directory)) {
+            return false;
+        }
+
+        /* @var array<\SplFileInfo> $items */
+        $items = new FilesystemIterator($directory);
+
+        foreach ($items as $item) {
+            if ($item->isDir() && !$item->isLink()) {
+                $this->deleteDirectory($item->getPathname());
+                continue;
+            }
+
+            @unlink($item->getPathname());
+        }
+
+        @rmdir($directory);
+
+        return true;
     }
 }
