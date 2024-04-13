@@ -51,6 +51,6 @@ class Filesystem
             );
         }
 
-        return $files;
+        return Arr::where($files, fn ($file) => !is_dir($file));
     }
 }
