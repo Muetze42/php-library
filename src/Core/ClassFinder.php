@@ -70,10 +70,20 @@ class ClassFinder
     {
         MacroRegistry::macro(SplitNewLinesMacro::class, Str::class);
 
+        $contents = preg_replace(
+            '!/\*.*?\*/!s',
+            '',
+            preg_replace(
+                '/\n\s*\n/',
+                "\n",
+                file_get_contents($file)
+            )
+        );
+
         /** @noinspection PhpUndefinedMethodInspection */
         $lines = array_map(
             fn (string $lime) =>  preg_replace('/\s+/', ' ', trim($lime)),
-            Str::splitNewLines(file_get_contents($file))
+            Str::splitNewLines($contents)
         );
 
         $namespace = '';
