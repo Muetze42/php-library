@@ -41,19 +41,17 @@ class Filesystem
         $paths = (array) $paths;
         $paths = array_merge($paths, $this->allDirectories($paths));
 
-        $files = Arr::flatten(Arr::map(
+        return Arr::flatten(Arr::map(
             $paths,
-            fn ($path) => glob(trim($path, '/\\') . DIRECTORY_SEPARATOR . $pattern)
+            fn ($path) => collect(iterator_to_array(new FilesystemIterator($path)))
+                ->filter(function (SplFileInfo $item) {
+                    return $item->isFile() && !$item->isLink();
+                })
+                ->map(fn (SplFileInfo $item) => $item->getPathname())
+                ->when($hidden, fn ($items) => $items->filter(fn ($item) => !Str::startsWith(basename($item), '.')))
+                ->values()
+                ->toArray()
         ));
-
-        if ($hidden) {
-            $files = Arr::where(
-                $files,
-                fn ($file) => !Str::startsWith(basename($file), '.')
-            );
-        }
-
-        return Arr::where($files, fn ($file) => !is_dir($file));
     }
 
     /**
