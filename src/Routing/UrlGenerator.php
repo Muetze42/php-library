@@ -20,8 +20,8 @@ class UrlGenerator extends Generator
     /**
      * Generate the URL to an application asset.
      *
-     * @param string     $path
-     * @param bool|null  $secure
+     * @param  string  $path
+     * @param  bool|null  $secure
      */
     public function asset($path, $secure = null): string
     {
