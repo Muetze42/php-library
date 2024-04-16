@@ -2,14 +2,13 @@
 
 namespace NormanHuth\Library;
 
-use NormanHuth\Library\Core\ClassFinder as Instance;
+use NormanHuth\Library\ClassFinder\ClassFinder as Instance;
 
 /**
- * phpcs:disable.
- *
- * @method load(array|string $paths, ?string $subClassOf = null, ?string $classUses = null, ?string $basePath = null): array
+ * @method load(array|string $paths, ?string $subClassOf = null, ?string $classUses = null): array
+ * @see \NormanHuth\Library\ClassFinder\ClassFinder::load()
  * @method classFromFile(string $file): string
- * phpcs:enable
+ * @see \NormanHuth\Library\ClassFinder\ClassFinder::classFromFile()
  */
 class ClassFinder
 {

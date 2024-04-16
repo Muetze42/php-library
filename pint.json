@@ -100,6 +100,7 @@
                 [
                     "deprecated",
                     "link",
+                    "method",
                     "see",
                     "since"
                 ],

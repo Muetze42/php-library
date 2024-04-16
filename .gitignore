@@ -5,3 +5,4 @@
 /vendor
 .phpunit.result.cache
 /debug.php
+/composer.lock

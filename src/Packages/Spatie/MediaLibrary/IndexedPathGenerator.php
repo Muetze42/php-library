@@ -5,7 +5,7 @@ namespace NormanHuth\Library\Packages\Spatie\MediaLibrary;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use NormanHuth\Library\Lib\MacroRegistry;
-use NormanHuth\Library\Macros\Number\IndexNumberMacro;
+use NormanHuth\Library\Support\Macros\Number\IndexNumberMacro;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 
