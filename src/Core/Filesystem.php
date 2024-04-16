@@ -43,7 +43,7 @@ class Filesystem
 
         $files = Arr::flatten(Arr::map(
             $paths,
-            fn ($path) => glob(trim($path, '/\\') . DIRECTORY_SEPARATOR . $pattern)
+            fn ($path) => glob(rtrim($path, '/\\') . DIRECTORY_SEPARATOR . $pattern)
         ));
 
         if ($hidden) {
