@@ -27,5 +27,13 @@
     "require-dev": {
         "laravel/pint": "^1.15",
         "nesbot/carbon": "^2.5|^3.0"
+    },
+    "replace": {
+        "norman-huth/php-library-class-finder": "self.version",
+        "norman-huth/php-library-commands": "self.version",
+        "norman-huth/php-library-file-system": "self.version",
+        "norman-huth/php-library-macros": "self.version",
+        "norman-huth/php-library-middlewares": "self.version",
+        "norman-huth/php-library-rules": "self.version"
     }
 }
