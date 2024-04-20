@@ -21,12 +21,12 @@ class LastAndMacro
             string $glue = ', ',
             ?string $translateFunction = null
         ): string {
-            if (!is_array($content)) {
+            if (! is_array($content)) {
                 $content = explode(',', $content);
                 $content = array_map('trim', $content);
             }
 
-            if (!$translateFunction && class_exists('Illuminate\Foundation\Application')) {
+            if (! $translateFunction && class_exists('Illuminate\Foundation\Application')) {
                 $translateFunction = '__';
             }
 
@@ -34,7 +34,7 @@ class LastAndMacro
                 $word = call_user_func($translateFunction, $word);
             }
 
-            return Arr::join($content, $glue, ' ' . $word . ' ');
+            return Arr::join($content, $glue, ' '.$word.' ');
         };
     }
 }

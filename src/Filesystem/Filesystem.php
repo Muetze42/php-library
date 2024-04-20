@@ -18,10 +18,10 @@ class Filesystem
             (array) $paths,
             fn ($path) => collect(iterator_to_array(new FilesystemIterator($path)))
                 ->filter(function (SplFileInfo $item) {
-                    return $item->isDir() && !$item->isLink();
+                    return $item->isDir() && ! $item->isLink();
                 })
                 ->map(fn (SplFileInfo $item) => $item->getPathname())
-                ->when($hidden, fn ($items) => $items->filter(fn ($item) => !Str::startsWith(basename($item), '.')))
+                ->when($hidden, fn ($items) => $items->filter(fn ($item) => ! Str::startsWith(basename($item), '.')))
                 ->values()
                 ->toArray()
         ));
@@ -43,17 +43,17 @@ class Filesystem
 
         $files = Arr::flatten(Arr::map(
             $paths,
-            fn ($path) => glob(rtrim($path, '/\\') . DIRECTORY_SEPARATOR . $pattern)
+            fn ($path) => glob(rtrim($path, '/\\').DIRECTORY_SEPARATOR.$pattern)
         ));
 
         if ($hidden) {
             $files = Arr::where(
                 $files,
-                fn ($file) => !Str::startsWith(basename($file), '.')
+                fn ($file) => ! Str::startsWith(basename($file), '.')
             );
         }
 
-        return Arr::where($files, fn ($file) => !is_dir($file));
+        return Arr::where($files, fn ($file) => ! is_dir($file));
     }
 
     /**
@@ -61,7 +61,7 @@ class Filesystem
      */
     public function deleteDirectory(string $directory): bool
     {
-        if (!is_dir($directory)) {
+        if (! is_dir($directory)) {
             return false;
         }
 
@@ -69,7 +69,7 @@ class Filesystem
         $items = new FilesystemIterator($directory);
 
         foreach ($items as $item) {
-            if ($item->isDir() && !$item->isLink()) {
+            if ($item->isDir() && ! $item->isLink()) {
                 $this->deleteDirectory($item->getPathname());
 
                 continue;

@@ -25,7 +25,7 @@ class KeyValueInsertToPositionMacro
             $items = array_keys($array);
 
             foreach ($items as $index => $item) {
-                if ($index == $position && !$insertAfter) {
+                if ($index == $position && ! $insertAfter) {
                     $results[$key] = $value;
                 }
 

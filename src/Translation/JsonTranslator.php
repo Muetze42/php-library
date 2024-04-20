@@ -14,7 +14,7 @@ class JsonTranslator
         string $group = '*',
         ?string $namespace = '*'
     ): array {
-        if (!$locale) {
+        if (! $locale) {
             $locale = app()->getLocale();
         }
 
@@ -33,7 +33,7 @@ class JsonTranslator
         foreach ($paths as $path) {
             $path = rtrim($path, '\\/');
             app('translator')->addJsonPath($path);
-            foreach (glob($path . '/*', GLOB_ONLYDIR) as $childPath) {
+            foreach (glob($path.'/*', GLOB_ONLYDIR) as $childPath) {
                 self::loadJsonTranslationsFrom($childPath);
             }
         }

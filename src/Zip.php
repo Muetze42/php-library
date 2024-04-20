@@ -74,7 +74,7 @@ class Zip
     {
         $excludeFiles = Arr::map(array_filter($excludeFiles), fn (string $file) => str_replace('\\', '/', $file));
         collect(Filesystem::allFiles($path))
-            ->filter(fn (string $file) => !in_array(str_replace('\\', '/', $file), $excludeFiles))
+            ->filter(fn (string $file) => ! in_array(str_replace('\\', '/', $file), $excludeFiles))
             ->each(fn (string $file) => $this->archive->addFile($file, substr($file, strlen($path) + 1)));
 
         return $this;

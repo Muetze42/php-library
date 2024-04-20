@@ -49,7 +49,7 @@ class Nova
     {
         $filtersRequest = request()->input('filters');
 
-        if (!$filtersRequest) {
+        if (! $filtersRequest) {
             return false;
         }
 
@@ -59,6 +59,6 @@ class Nova
             return isset($value[$filter]) && $value[$filter] != '';
         });
 
-        return !empty($check);
+        return ! empty($check);
     }
 }

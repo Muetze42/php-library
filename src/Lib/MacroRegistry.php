@@ -4,6 +4,7 @@ namespace NormanHuth\Library\Lib;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use NormanHuth\Library\ClassFinder;
@@ -35,7 +36,7 @@ class MacroRegistry
         /**
          * @var \Illuminate\Support\Traits\Macroable $macroableClass
          */
-        if (!method_exists($macroClass, '__invoke') || $macroableClass::hasMacro($method)) {
+        if (! method_exists($macroClass, '__invoke') || $macroableClass::hasMacro($method)) {
             return;
         }
 
@@ -45,7 +46,7 @@ class MacroRegistry
     /**
      * Register an array of custom macros using invokable class.
      *
-     *  @param array<class-string, class-string>  $macroMacroableClasses
+     * @param  array<class-string, class-string>  $macroMacroableClasses
      */
     public static function macros(array $macroMacroableClasses): void
     {
@@ -72,8 +73,8 @@ class MacroRegistry
     public static function registerCarbonMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Carbon',
-            Str::class
+            dirname(__FILE__, 2).'/Support/Macros/Carbon',
+            Carbon::class
         );
     }
 
@@ -83,7 +84,7 @@ class MacroRegistry
     public static function registerStrMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Str',
+            dirname(__FILE__, 2).'/Support/Macros/Str',
             Str::class
         );
     }
@@ -94,7 +95,7 @@ class MacroRegistry
     public static function registerArrMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Arr',
+            dirname(__FILE__, 2).'/Support/Macros/Arr',
             Arr::class
         );
     }
@@ -105,7 +106,7 @@ class MacroRegistry
     public static function registerNumberMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Number',
+            dirname(__FILE__, 2).'/Support/Macros/Number',
             Number::class
         );
     }
@@ -116,7 +117,7 @@ class MacroRegistry
     public static function registerHttpResponseMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Http/Response',
+            dirname(__FILE__, 2).'/Support/Macros/Http/Response',
             Response::class
         );
     }

@@ -34,16 +34,16 @@ class ClassFinder
         foreach ((new Filesystem())->allFiles($paths, '*.php') as $file) {
             $class = static::classFromFile($file);
 
-            if (!class_exists($class)) {
+            if (! class_exists($class)) {
                 continue;
             }
-            if (!(new ReflectionClass($class))->isInstantiable()) {
+            if (! (new ReflectionClass($class))->isInstantiable()) {
                 continue;
             }
-            if ($subClassOf && !is_subclass_of($class, $subClassOf)) {
+            if ($subClassOf && ! is_subclass_of($class, $subClassOf)) {
                 continue;
             }
-            if ($classUses && !in_array($classUses, class_uses_recursive($class))) {
+            if ($classUses && ! in_array($classUses, class_uses_recursive($class))) {
                 continue;
             }
 
@@ -74,7 +74,7 @@ class ClassFinder
 
         /** @noinspection PhpUndefinedMethodInspection */
         $lines = array_map(
-            fn (string $lime) =>  preg_replace('/\s+/', ' ', trim($lime)),
+            fn (string $lime) => preg_replace('/\s+/', ' ', trim($lime)),
             Str::splitNewLines($contents)
         );
 
@@ -91,6 +91,6 @@ class ClassFinder
             }
         }
 
-        return $namespace . '\\' . pathinfo($file, PATHINFO_FILENAME);
+        return $namespace.'\\'.pathinfo($file, PATHINFO_FILENAME);
     }
 }

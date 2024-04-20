@@ -16,7 +16,7 @@ class IndexedPathGenerator implements PathGenerator
      */
     public function getPath(Media $media): string
     {
-        return $this->getBasePath($media) . '/';
+        return $this->getBasePath($media).'/';
     }
 
     /**
@@ -24,7 +24,7 @@ class IndexedPathGenerator implements PathGenerator
      */
     public function getPathForConversions(Media $media): string
     {
-        return $this->getBasePath($media) . '/conversions/';
+        return $this->getBasePath($media).'/conversions/';
     }
 
     /**
@@ -32,7 +32,7 @@ class IndexedPathGenerator implements PathGenerator
      */
     public function getPathForResponsiveImages(Media $media): string
     {
-        return $this->getBasePath($media) . '/responsive-images/';
+        return $this->getBasePath($media).'/responsive-images/';
     }
 
     /**
@@ -41,12 +41,12 @@ class IndexedPathGenerator implements PathGenerator
     protected function getBasePath(Media $media): string
     {
         $prefix = rtrim(config('media-library.prefix', ''), '/');
-        $prefix .= '/' . Str::kebab(Str::plural(class_basename($media->model_type)));
+        $prefix .= '/'.Str::kebab(Str::plural(class_basename($media->model_type)));
         if (config('media-library.path-index-steps', 100)) {
-            $prefix .= '/' . $this->getIndexNumber($media->getKey());
+            $prefix .= '/'.$this->getIndexNumber($media->getKey());
         }
 
-        return $prefix . '/' . $media->getKey();
+        return $prefix.'/'.$media->getKey();
     }
 
     /**

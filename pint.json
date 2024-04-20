@@ -114,6 +114,7 @@
         "phpdoc_separation": {
             "groups": [
                 [
+                    "method",
                     "deprecated",
                     "link",
                     "see",
