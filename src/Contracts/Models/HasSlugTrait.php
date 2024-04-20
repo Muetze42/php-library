@@ -17,14 +17,9 @@ trait HasSlugTrait
     public array $sluggable = ['title', 'name'];
 
     /**
-     * Initialize the trait.
+     * Bootstrap the trait.
      */
-    public function initializeHasSlugTrait(): void
-    {
-        $this->mergeFillable(['batch']);
-    }
-
-    public static function bootHasSlugTrait()
+    public static function bootHasSlugTrait(): void
     {
         static::saving(function (Model $model) {
             foreach ((new static())->sluggable as $attribute) {

@@ -13,12 +13,12 @@ trait ActivatableTrait
     /**
      * Initialize the trait.
      */
-    protected function initializeCanActivateTrait(): void
+    protected function initializeActivatableTrait(): void
     {
         $this->mergeFillable(['activated_at', 'activated_until']);
         $this->mergeCasts([
-            'activated_at' => 'bool',
-            'activated_until' => 'bool',
+            'activated_at' => 'datetime',
+            'activated_until' => 'datetime',
         ]);
     }
 
