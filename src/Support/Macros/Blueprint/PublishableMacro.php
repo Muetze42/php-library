@@ -7,16 +7,16 @@ use Closure;
 /**
  * @mixin \Illuminate\Database\Schema\Blueprint
  */
-class ActivatableMacro
+class PublishableMacro
 {
     /**
-     * Add nullable activated at and activated until timestamp columns to the table.
+     * Add nullable published at and published until timestamp to the table.
      */
     public function __invoke(): Closure
     {
         return function ($precision = 0): void {
-            $this->timestamp('activated_at', $precision)->nullable();
-            $this->timestamp('activated_until', $precision)->nullable();
+            $this->timestamp('published_at', $precision)->nullable();
+            $this->timestamp('published_until', $precision)->nullable();
         };
     }
 }
