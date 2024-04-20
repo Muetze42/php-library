@@ -18,7 +18,7 @@ trait GetRelationsTrait
 
         return collect($reflector->getMethods())
             ->filter(
-                fn ($method) => !empty($method->getReturnType()) &&
+                fn ($method) => ! empty($method->getReturnType()) &&
                     str_contains(
                         $method->getReturnType(),
                         'Illuminate\Database\Eloquent\Relations'

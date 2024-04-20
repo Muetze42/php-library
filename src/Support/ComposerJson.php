@@ -62,7 +62,7 @@ class ComposerJson
 
         $data = Arr::mapWithKeys(
             $data,
-            fn (mixed $item, string $key) => [data_get($properties, $key, 99) . $key => $item]
+            fn (mixed $item, string $key) => [data_get($properties, $key, 99).$key => $item]
         );
 
         ksort($data);
@@ -82,7 +82,7 @@ class ComposerJson
         }
 
         if ($sortKeywords) {
-            if (!empty($data['keywords'])) {
+            if (! empty($data['keywords'])) {
                 $data['keywords'] = array_values(Arr::sort($data['keywords']));
             }
         }
@@ -96,11 +96,11 @@ class ComposerJson
             $data,
             function (mixed $item, string $key) {
                 if (str_contains($key, '/')) {
-                    $key = 3 . $key;
+                    $key = 3 .$key;
                 } elseif (str_contains($key, '-')) {
-                    $key = 2 . $key;
+                    $key = 2 .$key;
                 } else {
-                    $key = 1 . $key;
+                    $key = 1 .$key;
                 }
 
                 return [$key => $item];

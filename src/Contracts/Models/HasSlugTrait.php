@@ -28,7 +28,7 @@ trait HasSlugTrait
     {
         static::saving(function (Model $model) {
             foreach ((new static())->sluggable as $attribute) {
-                if (in_array($attribute, (new static())->getFillable()) || !is_null($model->{$attribute})) {
+                if (in_array($attribute, (new static())->getFillable()) || ! is_null($model->{$attribute})) {
                     $model->slug = Str::slug($model->{$attribute});
                 }
             }

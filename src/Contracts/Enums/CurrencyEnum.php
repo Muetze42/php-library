@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Enums;
+namespace NormanHuth\Library\Contracts\Enums;
 
 enum CurrencyEnum: string
 {
