@@ -4,14 +4,13 @@ namespace NormanHuth\Library\Support;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Laravel\Nova\Resource;
 
 class Nova
 {
     /**
      * Generate a Nova resource url.
      */
-    public function resourceUrl(string|Model|Resource $resource): string
+    public static function resourceUrl(string|Model|\Laravel\Nova\Resource $resource): string
     {
         $path = [
             trim(config('nova.path'), '/'),
@@ -21,7 +20,7 @@ class Nova
 
         if ($resource instanceof Model) {
             $path[] = $resource->getKey();
-        } elseif ($resource instanceof Resource) {
+        } elseif ($resource instanceof \Laravel\Nova\Resource) {
             $path[] = $resource->model()->getKey();
         }
 

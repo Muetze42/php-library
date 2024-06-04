@@ -7,6 +7,8 @@ use Illuminate\Support\Arr;
 
 /**
  * @mixin \Illuminate\Support\Str
+ *
+ * @deprecated Use \Illuminate\Support\Arr::join instead
  */
 class LastAndMacro
 {

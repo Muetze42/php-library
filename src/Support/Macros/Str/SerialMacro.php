@@ -12,7 +12,8 @@ class SerialMacro
 {
     /**
      * Generate a serial number.
-     * Example: YCY8N-DWCII-W63JY-A71PA-FTUMU.
+     *
+     * @example YCY8N-DWCII-W63JY-A71PA-FTUMU.
      */
     public function __invoke(): Closure
     {
