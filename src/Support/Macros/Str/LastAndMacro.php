@@ -36,7 +36,7 @@ class LastAndMacro
                 $word = call_user_func($translateFunction, $word);
             }
 
-            return Arr::join($content, $glue, ' '.$word.' ');
+            return Arr::join($content, $glue, ' ' . $word . ' ');
         };
     }
 }

@@ -73,7 +73,7 @@ class MacroRegistry
     public static function registerCarbonMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2).'/Support/Macros/Carbon',
+            dirname(__FILE__, 2) . '/Support/Macros/Carbon',
             Carbon::class
         );
     }
@@ -84,7 +84,7 @@ class MacroRegistry
     public static function registerStrMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2).'/Support/Macros/Str',
+            dirname(__FILE__, 2) . '/Support/Macros/Str',
             Str::class
         );
     }
@@ -95,7 +95,7 @@ class MacroRegistry
     public static function registerArrMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2).'/Support/Macros/Arr',
+            dirname(__FILE__, 2) . '/Support/Macros/Arr',
             Arr::class
         );
     }
@@ -106,7 +106,7 @@ class MacroRegistry
     public static function registerNumberMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2).'/Support/Macros/Number',
+            dirname(__FILE__, 2) . '/Support/Macros/Number',
             Number::class
         );
     }
@@ -117,7 +117,7 @@ class MacroRegistry
     public static function registerHttpResponseMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2).'/Support/Macros/Http/Response',
+            dirname(__FILE__, 2) . '/Support/Macros/Http/Response',
             Response::class
         );
     }

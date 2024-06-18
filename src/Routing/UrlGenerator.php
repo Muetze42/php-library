@@ -37,9 +37,9 @@ class UrlGenerator extends Generator
         $file = public_path($path);
         if (! str_starts_with(trim($path, '\\/'), 'build/') && file_exists($file)) {
             $path .= str_ends_with($path, '?') ? '&' : '?';
-            $path .= 'v='.md5_file($file);
+            $path .= 'v=' . md5_file($file);
         }
 
-        return $this->removeIndex($root).'/'.$path;
+        return $this->removeIndex($root) . '/' . $path;
     }
 }

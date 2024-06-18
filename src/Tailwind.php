@@ -18,7 +18,7 @@ class Tailwind
     {
         if (! static::$classes) {
             static::$classes = json_decode(file_get_contents(
-                dirname(__FILE__, 2).'/data/tailwind-classes.json'), true
+                dirname(__FILE__, 2) . '/data/tailwind-classes.json'), true
             );
         }
 
@@ -50,7 +50,7 @@ class Tailwind
      */
     public static function color(string $palette, int $shade): ?string
     {
-        $class = data_get(static::classes(), 'text-'.Str::lower($palette).'-'.$shade);
+        $class = data_get(static::classes(), 'text-' . Str::lower($palette) . '-' . $shade);
 
         if (! $class || ! str_contains($class, 'color: rgb')) {
             return null;

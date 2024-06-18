@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Support\Macros\{{class}};
+
+use Closure;
+
+/**
+ * @mixin \{{macroable}}
+ */
+class {{method}}Macro
+{
+    public function __invoke(): Closure
+    {
+        return function () {
+            // TODO: Implement macro method.
+        };
+    }
+}

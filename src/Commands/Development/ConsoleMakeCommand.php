@@ -34,7 +34,7 @@ class ConsoleMakeCommand extends Command
             $levels = explode('\\', $commandClass);
 
             foreach ($levels as $level) {
-                $command .= ':'.Str::kebab($level);
+                $command .= ':' . Str::kebab($level);
             }
         }
 

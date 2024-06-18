@@ -20,7 +20,7 @@ class EnsureGitHubTokenIsValidMiddleware
         if (
             ! $token ||
             hash_equals(
-                'sha256='.hash_hmac('sha256', $request->getContent(), $token),
+                'sha256=' . hash_hmac('sha256', $request->getContent(), $token),
                 $request->header('x-hub-signature-256')
             )
         ) {
