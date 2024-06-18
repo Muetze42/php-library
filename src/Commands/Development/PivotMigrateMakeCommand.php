@@ -150,7 +150,7 @@ class PivotMigrateMakeCommand extends GeneratorCommand
             return $file;
         }
 
-        return dirname(__DIR__, 3).'/stubs/migration.pivot.stub';
+        return dirname(__DIR__, 3).'/stubs/laravel/migration.pivot.stub';
     }
 
     /**
