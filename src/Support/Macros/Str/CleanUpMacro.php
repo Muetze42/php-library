@@ -11,7 +11,7 @@ use Illuminate\Support\Stringable;
 class CleanUpMacro
 {
     /**
-     * Remove unwanted characters from a character string.
+     * Remove unwanted characters from a string.
      */
     public function __invoke(): Closure
     {

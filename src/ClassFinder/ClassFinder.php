@@ -91,6 +91,6 @@ class ClassFinder
             }
         }
 
-        return $namespace.'\\'.pathinfo($file, PATHINFO_FILENAME);
+        return $namespace . '\\' . pathinfo($file, PATHINFO_FILENAME);
     }
 }
