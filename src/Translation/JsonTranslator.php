@@ -8,6 +8,11 @@ class JsonTranslator
 {
     /**
      * Get all JSON translation.
+     *
+     * @param  string|null  $locale
+     * @param  string  $group
+     * @param  string|null  $namespace
+     * @return array<string, string>
      */
     public static function getJsonTranslations(
         ?string $locale = null,
@@ -25,6 +30,8 @@ class JsonTranslator
 
     /**
      * Add new JSON paths include child paths to the translation file loader.
+     *
+     * @param  string|string[]  $paths
      */
     public static function loadJsonTranslationsFrom(array|string $paths): void
     {
@@ -33,7 +40,11 @@ class JsonTranslator
         foreach ($paths as $path) {
             $path = rtrim($path, '\\/');
             app('translator')->addJsonPath($path);
-            foreach (glob($path . '/*', GLOB_ONLYDIR) as $childPath) {
+            $childPaths = glob($path . '/*', GLOB_ONLYDIR);
+            if (! $childPaths) {
+                continue;
+            }
+            foreach ($childPaths as $childPath) {
                 self::loadJsonTranslationsFrom($childPath);
             }
         }

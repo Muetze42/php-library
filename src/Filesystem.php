@@ -5,15 +5,15 @@ namespace NormanHuth\Library;
 use NormanHuth\Library\Filesystem\Filesystem as Instance;
 
 /**
- * @method allDirectories(string|array $paths, bool $hidden = true): array
+ * @method static array allDirectories(string|array $paths, bool $hidden = true)
  *
  * @see \NormanHuth\Library\Filesystem\Filesystem::allDirectories()
  *
- * @method allFiles(string|array $paths, string $pattern = '*', bool $hidden = true): array
+ * @method static array allFiles(string|array $paths, string $pattern = '*', bool $hidden = true)
  *
  * @see \NormanHuth\Library\Filesystem\Filesystem::allFiles()
  *
- * @method deleteDirectory(string $path): bool
+ * @method static bool deleteDirectory(string $path): bool
  *
  * @see \NormanHuth\Library\Filesystem\Filesystem::deleteDirectory()
  */
