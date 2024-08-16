@@ -32,5 +32,5 @@ Migration for Models
 ## Model Trait
 
 ```php
-\NormanHuth\Library\Contracts\Models\ActivatableTrait::class
+\NormanHuth\Library\Traits\Models\ActivatableTrait::class
 ```

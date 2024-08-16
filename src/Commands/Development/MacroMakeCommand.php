@@ -3,7 +3,6 @@
 namespace NormanHuth\Library\Commands\Development;
 
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 
