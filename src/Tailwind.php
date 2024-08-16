@@ -8,18 +8,30 @@ class Tailwind
 {
     /**
      * The Tailwind CSS classes.
+     *
+     * @var array<int, string>
      */
-    protected static ?array $classes = null;
+    protected static array $classes;
 
     /**
      * Get all Tailwind CSS classes.
+     *
+     * @return array<int, string>
+     *
+     * @throws \Exception
      */
     public static function classes(): array
     {
-        if (! static::$classes) {
-            static::$classes = json_decode(file_get_contents(
-                dirname(__FILE__, 2) . '/data/tailwind-classes.json'), true
+        if (! isset(self::$classes)) {
+            $contents = file_get_contents(
+                dirname(__FILE__, 2) . '/data/tailwind-classes.json'
             );
+
+            if (! $contents) {
+                throw new \Exception('Unable to load tailwind classes.json');
+            }
+
+            static::$classes = json_decode($contents, true);
         }
 
         return static::$classes;

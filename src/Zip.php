@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpComposerExtensionStubsInspection */
-
 namespace NormanHuth\Library;
 
 use Illuminate\Support\Arr;
@@ -49,6 +47,11 @@ class Zip
 
     /**
      * Add files from a directory by glob pattern.
+     *
+     * @param  string  $pattern
+     * @param  int  $flags
+     * @param  array<int, mixed>  $options
+     * @return static
      */
     public function addGlob(string $pattern, int $flags = 0, array $options = []): static
     {
@@ -59,6 +62,11 @@ class Zip
 
     /**
      * Add files from a directory by PCRE pattern.
+     *
+     * @param  string  $pattern
+     * @param  string  $path
+     * @param  array<int, mixed>  $options
+     * @return static
      */
     public function addPattern(string $pattern, string $path = '.', array $options = []): static
     {
@@ -69,6 +77,10 @@ class Zip
 
     /**
      * Add a directory to a ZIP archive.
+     *
+     * @param  string  $path
+     * @param  array<int, string>  $excludeFiles
+     * @return static
      */
     public function addDirectory(string $path, array $excludeFiles = []): static
     {
@@ -82,6 +94,10 @@ class Zip
 
     /**
      * Add an empty directory to a ZIP archive.
+     *
+     * @param  string  $dirname
+     * @param  int  $flags
+     * @return static
      */
     public function addEmptyDir(string $dirname, int $flags = 0): static
     {
@@ -92,6 +108,8 @@ class Zip
 
     /**
      * Get the archive instance.
+     *
+     * @return \ZipArchive
      */
     public function archive(): ZipArchive
     {
@@ -100,6 +118,8 @@ class Zip
 
     /**
      * Close the active archive.
+     *
+     * @return static
      */
     public function close(): static
     {
@@ -110,6 +130,12 @@ class Zip
 
     /**
      * Compress a directory to a ZIP archive.
+     *
+     * @param  string  $target
+     * @param  string  $path
+     * @param  array<int, string>  $excludeFiles
+     * @param  bool  $overwrite
+     * @return \ZipArchive
      */
     public static function compressDirectory(
         string $target,
