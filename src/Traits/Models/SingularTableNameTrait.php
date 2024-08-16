@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Contracts\Models;
+namespace NormanHuth\Library\Traits\Models;
 
 use Illuminate\Support\Str;
 

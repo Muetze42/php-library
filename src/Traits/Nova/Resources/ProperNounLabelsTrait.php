@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Contracts\Nova\Resources;
+namespace NormanHuth\Library\Traits\Nova\Resources;
 
 use Illuminate\Support\Str;
 

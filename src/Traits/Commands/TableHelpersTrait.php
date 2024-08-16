@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Contracts\Commands;
+namespace NormanHuth\Library\Traits\Commands;
 
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Helper\TableCellStyle;

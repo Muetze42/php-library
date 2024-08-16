@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Contracts\Enums;
+namespace NormanHuth\Library\Enums;
 
 enum LanguageEnum: string
 {

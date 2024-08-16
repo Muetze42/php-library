@@ -5,7 +5,7 @@ namespace NormanHuth\Library\Commands\Users;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
-use NormanHuth\Library\Contracts\Commands\TableHelpersTrait;
+use NormanHuth\Library\Traits\Commands\TableHelpersTrait;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'app:users:list-admins')]
