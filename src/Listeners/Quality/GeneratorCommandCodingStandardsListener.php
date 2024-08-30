@@ -14,11 +14,13 @@ class GeneratorCommandCodingStandardsListener
     /**
      * Classes that should not be suffixed with a type.
      *
-     * @var array<string>
+     * @var array<int, string>
      */
     protected array $withOutSuffix = [
-        'model',
+        'class',
+        'component',
         'migration',
+        'model',
         'test',
         'view',
     ];
