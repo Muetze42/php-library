@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Services\Translation;
+namespace NormanHuth\Library\Providers;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
