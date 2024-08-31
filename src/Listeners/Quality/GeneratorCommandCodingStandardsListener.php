@@ -54,6 +54,10 @@ class GeneratorCommandCodingStandardsListener
             return;
         }
 
+        if (! $event->input->hasArgument('name')) {
+            return;
+        }
+
         $name = $event->input->getArgument('name');
 
         if (
