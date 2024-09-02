@@ -1,0 +1,30 @@
+<?php
+
+{{imports}}
+
+return new class () extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up(): void
+    {
+        Schema::create('{{table}}', function (Blueprint $table) {
+            {{foreign1}}
+            {{foreign2}}
+            $table->primary([{{primary1}}, {{primary2}}]);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('{{table}}');
+    }
+};
