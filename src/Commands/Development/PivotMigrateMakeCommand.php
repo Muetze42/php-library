@@ -119,6 +119,7 @@ class PivotMigrateMakeCommand extends GeneratorCommand implements PromptsForMiss
     protected function replaceClass($stub, $name): string
     {
         $replace = [
+            '{{table}}' => Str::snake(class_basename($this->model1)) . '_' . Str::snake(class_basename($this->model2)),
             '{{imports}}' => implode("\n", $this->imports),
             '{{foreign1}}' => $this->getForeignReplace($this->model1),
             '{{foreign2}}' => $this->getForeignReplace($this->model2),
