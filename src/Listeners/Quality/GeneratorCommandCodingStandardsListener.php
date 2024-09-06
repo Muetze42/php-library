@@ -68,9 +68,11 @@ class GeneratorCommandCodingStandardsListener
             $reflection = new ReflectionClass($commandInstance);
             $type = $reflection->getProperty('type')->getValue($commandInstance);
             $suffix = Str::ucfirst($parts[1]);
-            $name = $event->input->getArgument('name');
 
-            if (! str_ends_with($name, $suffix)) {
+            if (
+                ! str_ends_with($name, $suffix) &&
+                ($event->command != 'make:resource') && ! str_ends_with($name, 'Collection')
+            ) {
                 throw new InvalidArgumentException(
                     sprintf('Coding Standards mismatch. %s must suffixed with `%s`.', $type, $suffix)
                 );
