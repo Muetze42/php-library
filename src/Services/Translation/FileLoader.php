@@ -70,8 +70,7 @@ class FileLoader extends Loader
     /**
      * Get parsed locale string.
      *
-     * @param string  $locale
-     *
+     * @param  string  $locale
      * @return string
      */
     protected function parseLocaleString(string $locale): string

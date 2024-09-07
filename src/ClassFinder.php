@@ -16,9 +16,8 @@ use NormanHuth\Library\ClassFinder\ClassFinder as Instance;
 class ClassFinder
 {
     /**
-     * @param string  $name
-     * @param array   $arguments
-     *
+     * @param  string  $name
+     * @param  array  $arguments
      * @return mixed
      */
     public static function __callStatic(string $name, array $arguments)

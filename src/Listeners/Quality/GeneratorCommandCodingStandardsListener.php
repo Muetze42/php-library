@@ -79,7 +79,7 @@ class GeneratorCommandCodingStandardsListener
             }
         }
 
-        if ($name == Str::plural($name)) {
+        if ($name == Str::plural($name) && Str::endsWith($name, 's')) {
             throw new InvalidArgumentException('Coding Standards mismatch. Class names must be in singular.');
         }
     }
