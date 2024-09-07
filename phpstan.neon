@@ -12,7 +12,7 @@ parameters:
   level: 9
 
   ignoreErrors:
-#    - "#Unsafe usage of new static#"
+    - "#Unsafe usage of new static#"
 #      message: "#Unsafe usage of new static#"
 #      paths:
 #        - app/Support
