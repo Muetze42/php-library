@@ -5,7 +5,7 @@ namespace NormanHuth\Library\Support\Macros\Request;
 use Closure;
 
 /**
- * Determine if the name of the route instance ends with `.create`;
+ * etermine if the name of the route instance is a create request;
  *
  * @mixin \Illuminate\Http\Request
  */

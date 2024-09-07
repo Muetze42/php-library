@@ -5,16 +5,16 @@ namespace NormanHuth\Library\Support\Macros\Request;
 use Closure;
 
 /**
- * Determine if the name of the route instance is an index request;
+ * Determine if the name of the route instance is a show request;
  *
  * @mixin \Illuminate\Http\Request
  */
-class IsIndexRequestMacro
+class IsShowRequestMacro
 {
     public function __invoke(): Closure
     {
         return function () {
-            return $this->getMethod() == 'GET' && $this->routeIs('*.index');
+            return $this->getMethod() == 'GET' && $this->routeIs('*.show');
         };
     }
 }
