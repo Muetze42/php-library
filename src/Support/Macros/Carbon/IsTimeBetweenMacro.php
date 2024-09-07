@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Carbon;
 
 /**
- * Determine if the current time is between 2 specified times.
+ * Determines if the current time is between two others.
  *
  * @mixin \Illuminate\Support\Carbon
  */
@@ -30,9 +30,9 @@ class IsTimeBetweenMacro
 
             if ($endTime->lessThan($startTime)) {
                 if ($startTime->greaterThan($now)) {
-                    $startTime = $startTime->subDay(1);
+                    $startTime = $startTime->subDay();
                 } else {
-                    $endTime = $endTime->addDay(1);
+                    $endTime = $endTime->addDay();
                 }
             }
 
