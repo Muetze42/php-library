@@ -77,7 +77,7 @@ class PivotMigrateMakeCommand extends GeneratorCommand implements PromptsForMiss
             class_basename($model1) => $model1,
             class_basename($model2) => $model2,
         ]);
-        ksort($models);
+        sort($models);
         $this->model1 = $models[0];
         $this->model2 = $models[1];
 
