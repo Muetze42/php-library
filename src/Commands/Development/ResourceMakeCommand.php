@@ -30,4 +30,29 @@ class ResourceMakeCommand extends Command
 
         return $contents;
     }
+
+    /**
+     * Get the stub file for the generator.
+     *
+     * @return string
+     */
+    protected function getStub(): string
+    {
+        return $this->collection()
+            ? $this->resolveStubPath('resource-collection.stub')
+            : $this->resolveStubPath('resource.stub');
+    }
+
+    /**
+     * Resolve the fully-qualified path to the stub.
+     *
+     * @param  string  $stub
+     * @return string
+     */
+    protected function resolveStubPath($stub): string
+    {
+        return file_exists($customPath = $this->laravel->basePath('stubs/' . trim($stub, '/')))
+            ? $customPath
+            : dirname(__DIR__, 3) . '/stubs/laravel/' . $stub;
+    }
 }
