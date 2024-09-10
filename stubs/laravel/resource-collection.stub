@@ -7,7 +7,6 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * @mixin \App\Models\{{ mixin }}
- * @extends \Illuminate\Http\Resources\Json\JsonResource<\App\Models\{{ mixin }}>
  */
 class {{ class }} extends ResourceCollection
 {
