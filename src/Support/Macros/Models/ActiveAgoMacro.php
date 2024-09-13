@@ -23,19 +23,19 @@ class ActiveAgoMacro
                 );
             }
 
-            $attribute = $this->getAttribute($attribute);
+            $value = $this->getAttribute($attribute);
 
-            if (is_null($attribute)) {
+            if (is_null($value)) {
                 return null;
             }
 
-            if (! $attribute instanceof Carbon) {
+            if (! $value instanceof Carbon) {
                 throw new MacroAttributeException(
                     sprintf('The attribute `%s` is not a Carbon instance', $attribute)
                 );
             }
 
-            return Carbon::now()->diffForHumans($attribute);
+            return Carbon::now()->diffForHumans($value);
         };
     }
 }
