@@ -14,6 +14,12 @@ use NormanHuth\Library\Exceptions\MacroAttributeException;
  */
 class TimestampsMixins
 {
+    /**
+     * Resolve the attribute for the timestamps ago mixin.
+     *
+     * @param  string  $attribute
+     * @return string|null
+     */
     protected function resolveAttributeForTimestampsAgoMixin(string $attribute): ?string
     {
         $value = $this->{$attribute};
