@@ -23,26 +23,26 @@ class AgeMacro
                 );
             }
 
-            $attribute = $this->getAttribute($attribute);
+            $value = $this->getAttribute($attribute);
 
-            if (is_null($attribute)) {
+            if (is_null($value)) {
                 return null;
             }
 
-            if (! $attribute instanceof Carbon) {
+            if (! $value instanceof Carbon) {
                 throw new MacroAttributeException(
                     sprintf('The attribute `%s` is not a Carbon instance', $attribute)
                 );
             }
 
             $now = Carbon::now();
-            $attribute->setYear($now->year);
+            $value->setYear($now->year);
 
-            if ($attribute->year < $now->year) {
-                $attribute->addYear();
+            if ($value->year < $now->year) {
+                $value->addYear();
             }
 
-            return $now->diffInYears($attribute);
+            return $now->diffInYears($value);
         };
     }
 }
