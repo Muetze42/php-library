@@ -11,11 +11,11 @@ use Illuminate\Support\Collection;
  */
 class MapFirstItemAsKeysMacro
 {
-    /**
-     * Use the values of the first item in the array as the keys for next array items.
-     */
     public function __invoke(): Closure
     {
+        /**
+         * Use the values of the first item in the array as the keys for next array items.
+         */
         return function (
             array|Collection $array
         ): array {

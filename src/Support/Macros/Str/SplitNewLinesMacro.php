@@ -9,11 +9,11 @@ use Closure;
  */
 class SplitNewLinesMacro
 {
-    /**
-     * Split string by new lines.
-     */
     public function __invoke(): Closure
     {
+        /**
+         * Split string by new lines.
+         */
         return function (string $string): array {
             return preg_split('/\r\n|\n|\r/', $string);
         };

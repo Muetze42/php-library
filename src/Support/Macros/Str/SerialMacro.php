@@ -10,13 +10,13 @@ use Illuminate\Support\Str;
  */
 class SerialMacro
 {
-    /**
-     * Generate a serial number.
-     *
-     * @example YCY8N-DWCII-W63JY-A71PA-FTUMU.
-     */
     public function __invoke(): Closure
     {
+        /**
+         * Generate a serial number.
+         *
+         * @example YCY8N-DWCII-W63JY-A71PA-FTUMU.
+         */
         return function (
             bool $toUpper = true,
             int $parts = 5,

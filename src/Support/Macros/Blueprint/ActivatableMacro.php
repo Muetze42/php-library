@@ -9,11 +9,11 @@ use Closure;
  */
 class ActivatableMacro
 {
-    /**
-     * Add nullable activated at and activated until timestamp columns to the table.
-     */
     public function __invoke(): Closure
     {
+        /**
+         * Add nullable activated at and activated until timestamp columns to the table.
+         */
         return function ($precision = 0): void {
             $this->timestamp('activated_at', $precision)->nullable();
             $this->timestamp('activated_until', $precision)->nullable();

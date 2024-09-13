@@ -10,11 +10,11 @@ use Illuminate\Support\Stringable;
  */
 class CleanUpMacro
 {
-    /**
-     * Remove unwanted characters from a string.
-     */
     public function __invoke(): Closure
     {
+        /**
+         * Remove unwanted characters from a string.
+         */
         return function (string|Stringable|null $string): ?string {
             if (is_null($string)) {
                 return null;
