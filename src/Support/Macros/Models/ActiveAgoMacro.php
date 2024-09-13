@@ -2,9 +2,8 @@
 
 namespace NormanHuth\Library\Support\Macros\Models;
 
-use Carbon\Carbon;
 use Closure;
-use Illuminate\Support\Carbon as LaravelCarbon;
+use Illuminate\Support\Carbon;
 use NormanHuth\Library\Exceptions\MacroAttributeException;
 
 /**
@@ -36,7 +35,7 @@ class ActiveAgoMacro
                 );
             }
 
-            return LaravelCarbon::now()->diffForHumans($attribute);
+            return Carbon::now()->diffForHumans($attribute);
         };
     }
 }
