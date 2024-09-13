@@ -6,14 +6,15 @@ use Closure;
 use Illuminate\Support\Carbon;
 
 /**
- * Determines if the current time is between two others.
- *
  * @mixin \Illuminate\Support\Carbon
  */
 class IsTimeBetweenMacro
 {
     public function __invoke(): Closure
     {
+        /**
+         * Determines if the current time is between two others.
+         */
         return function (string|Carbon $startTime, string|Carbon $endTime, ?string $timezone = null): bool {
             if (is_string($startTime)) {
                 $startTime = Carbon::parse($startTime);

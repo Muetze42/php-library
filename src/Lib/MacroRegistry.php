@@ -5,6 +5,7 @@ namespace NormanHuth\Library\Lib;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use NormanHuth\Library\ClassFinder;
@@ -61,6 +62,7 @@ class MacroRegistry
     public static function registerAllMacros(): void
     {
         static::registerCarbonMacros();
+        static::registerCollectionMacros();
         static::registerArrMacros();
         static::registerHttpResponseMacros();
         static::registerNumberMacros();
@@ -75,6 +77,17 @@ class MacroRegistry
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Support/Macros/Carbon',
             Carbon::class
+        );
+    }
+
+    /**
+     * Register all string macros.
+     */
+    public static function registerCollectionMacros(): void
+    {
+        static::registerInvokableMacrosInPath(
+            dirname(__FILE__, 2) . '/Support/Macros/Collection',
+            Collection::class
         );
     }
 

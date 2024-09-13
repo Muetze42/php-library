@@ -9,11 +9,11 @@ use Closure;
  */
 class KeyValueInsertToPositionMacro
 {
-    /**
-     * Add an array key value pair to specific position into an existing key value array.
-     */
     public function __invoke(): Closure
     {
+        /**
+         * Add an array key value pair to specific position into an existing key value array.
+         */
         return function (
             array $array,
             string $key,
