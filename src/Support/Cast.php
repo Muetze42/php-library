@@ -90,7 +90,7 @@ class Cast
     /**
      * Try to get the value as array.
      *
-     * @return array<int, string>
+     * @return array
      *
      * @throws\NormanHuth\Library\Exceptions\CastException
      */
