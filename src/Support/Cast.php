@@ -90,8 +90,6 @@ class Cast
     /**
      * Try to get the value as array.
      *
-     * @return array<int, string>
-     *
      * @throws\NormanHuth\Library\Exceptions\CastException
      */
     public function toArray(): array
