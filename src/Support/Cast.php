@@ -39,6 +39,9 @@ class Cast
     {
         $value = $this->value;
 
+        if (is_null($value)) {
+            return '';
+        }
         if ($value instanceof Jsonable || is_object($value) && method_exists($value, 'toJson')) {
             return $value->toJson();
         }
