@@ -57,7 +57,7 @@ class MacroRegistry
     }
 
     /**
-     * Register all macros.
+     * Register all macros from /src/Support/Macros directory.
      */
     public static function registerAllMacros(): void
     {
@@ -67,6 +67,17 @@ class MacroRegistry
         static::registerHttpResponseMacros();
         static::registerNumberMacros();
         static::registerStrMacros();
+    }
+
+    /**
+     * Register all string cast macros.
+     */
+    public static function registerStrCastMacros(): void
+    {
+        static::registerInvokableMacrosInPath(
+            dirname(__FILE__, 2) . '/Support/CastMacros/Str',
+            Str::class
+        );
     }
 
     /**
