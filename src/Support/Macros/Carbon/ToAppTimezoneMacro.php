@@ -16,7 +16,7 @@ class ToAppTimezoneMacro
          * Get index number of an integer.
          */
         return function (): Carbon {
-            if ($timezone = config('app.public_timezone')) {
+            if ($timezone = config('app.timezone')) {
                 return $this->tz($timezone);
             }
 

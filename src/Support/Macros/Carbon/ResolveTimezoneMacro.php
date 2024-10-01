@@ -16,14 +16,18 @@ class ResolveTimezoneMacro
         /**
          * Get index number of an integer.
          */
-        return function (Request $request): Carbon {
+        return function (?Request $request = null): Carbon {
+            if (! $request) {
+                $request = app(Request::class);
+            }
+
             if ($timezone = $request->session()?->get('timezone')) {
                 return $this->tz($timezone);
             }
             if ($timezone = $request->user()?->timezone) {
                 return $this->tz($timezone);
             }
-            if ($timezone = config('app.public_timezone')) {
+            if ($timezone = config('app.timezone')) {
                 return $this->tz($timezone);
             }
 
