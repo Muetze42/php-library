@@ -2,8 +2,6 @@
 
 namespace NormanHuth\Library\Traits;
 
-use Illuminate\Support\Carbon;
-
 trait HasStringAttributesCastingTrait
 {
     use HasAttributesCastingTrait;

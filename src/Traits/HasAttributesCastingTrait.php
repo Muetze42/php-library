@@ -70,4 +70,12 @@ trait HasAttributesCastingTrait
             $this->attributes[$key] = $this->castAttribute($key, $this->attributes[$key]);
         });
     }
+
+    /**
+     * Get the value indicating whether the IDs are incrementing.
+     */
+    public function getIncrementing(): bool
+    {
+        return false;
+    }
 }
