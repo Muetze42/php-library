@@ -78,4 +78,14 @@ trait HasAttributesCastingTrait
     {
         return false;
     }
+
+    /**
+     * Get the format for database stored dates.
+     *
+     * @return string
+     */
+    public function getDateFormat(): string
+    {
+        return 'Y-m-d H:i:s';
+    }
 }
