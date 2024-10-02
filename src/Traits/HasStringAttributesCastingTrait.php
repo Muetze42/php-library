@@ -2,6 +2,8 @@
 
 namespace NormanHuth\Library\Traits;
 
+use Illuminate\Support\Carbon;
+
 trait HasStringAttributesCastingTrait
 {
     use HasAttributesCastingTrait;
@@ -21,7 +23,13 @@ trait HasStringAttributesCastingTrait
             return is_bool($value) ? $value : $value == 'true';
         }
 
-        return $this->castAttribute($key, $value);
+        $value = $this->castAttribute($key, $value);
+
+        if ($value instanceof Carbon && $timezone = config('app.timezone')) {
+            $value->tz($timezone);
+        }
+
+        return $value;
     }
 
     /**
