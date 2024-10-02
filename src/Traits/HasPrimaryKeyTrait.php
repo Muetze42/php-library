@@ -5,21 +5,11 @@ namespace NormanHuth\Library\Traits;
 trait HasPrimaryKeyTrait
 {
     /**
-     * The primary key for the model.
-     */
-    //protected string $primaryKey = null;
-
-    /**
-     * The "type" of the primary key ID.
-     */
-    //protected string $keyType = 'int';
-
-    /**
      * Get the primary key for the model.
      *
-     * @return string|null
+     * @return string
      */
-    public function getKeyName(): ?string
+    public function getKeyName(): string
     {
         return $this->primaryKey;
     }
@@ -27,10 +17,10 @@ trait HasPrimaryKeyTrait
     /**
      * Set the primary key for the model.
      *
-     * @param  string|null  $key
+     * @param  string  $key
      * @return $this
      */
-    public function setKeyName(?string $key): static
+    public function setKeyName(string $key): static
     {
         $this->primaryKey = $key;
 
