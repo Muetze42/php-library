@@ -14,8 +14,8 @@ class SplitNewLinesMacro
         /**
          * Split string by new lines.
          */
-        return function (string $string): array {
-            return preg_split('/\r\n|\n|\r/', $string);
+        return function (string $value): array {
+            return preg_split('/\r\n|\n|\r/', $value);
         };
     }
 }
