@@ -70,17 +70,6 @@ class MacroRegistry
     }
 
     /**
-     * Register all string cast macros.
-     */
-    public static function registerStrCastMacros(): void
-    {
-        static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/CastMacros/Str',
-            Str::class
-        );
-    }
-
-    /**
      * Register all string macros.
      */
     public static function registerCarbonMacros(): void
