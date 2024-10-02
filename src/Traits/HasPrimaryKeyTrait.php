@@ -7,12 +7,12 @@ trait HasPrimaryKeyTrait
     /**
      * The primary key for the model.
      */
-    protected ?string $primaryKey = null;
+    //protected string $primaryKey = null;
 
     /**
      * The "type" of the primary key ID.
      */
-    protected string $keyType = 'int';
+    //protected string $keyType = 'int';
 
     /**
      * Get the primary key for the model.
