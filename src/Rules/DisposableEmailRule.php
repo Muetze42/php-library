@@ -27,9 +27,13 @@ class DisposableEmailRule implements ValidationRule
 
         if (Storage::exists($path)) {
             $domains = Storage::json($path);
+            if (! is_string($value)) {
+                $fail($this->translationKey)->translate(['attribute' => $value]);
+                return;
+            }
             $value = Str::lower(trim($value));
             $parts = explode('@', $value);
-            if (empty($parts[1]) || in_array($parts[1], $domains)) {
+            if (empty($parts[1]) || in_array($parts[1], (array) $domains)) {
                 $fail($this->translationKey)->translate(['attribute' => $value]);
             }
         }
