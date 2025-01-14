@@ -14,7 +14,7 @@ class ResolveTimezoneMacro
     public function __invoke(): Closure
     {
         /**
-         * Get index number of an integer.
+         * Resolve and set the timezone by the session.
          */
         return function (?Request $request = null): Carbon {
             if (! $request) {
