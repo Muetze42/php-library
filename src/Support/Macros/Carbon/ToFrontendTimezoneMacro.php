@@ -3,21 +3,20 @@
 namespace NormanHuth\Library\Support\Macros\Carbon;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 /**
- * @mixin \Illuminate\Support\Carbon;
+ * @mixin \Illuminate\Support\Carbon
  */
-class ToUserTimezoneMacro
+class ToFrontendTimezoneMacro
 {
     public function __invoke(): Closure
     {
         /**
-         * Set the timezone to user timezone.
+         * Set the timezone to frontend timezone.
          */
-        return function (Request $request): Carbon {
-            if ($timezone = $request->user()?->timezone) {
+        return function (): Carbon {
+            if ($timezone = config('app.frontend_timezone')) {
                 return $this->tz($timezone);
             }
 

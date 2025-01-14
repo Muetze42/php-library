@@ -13,7 +13,7 @@ class ToAppTimezoneMacro
     public function __invoke(): Closure
     {
         /**
-         * Get index number of an integer.
+         * Set the timezone to app timezone.
          */
         return function (): Carbon {
             if ($timezone = config('app.timezone')) {
