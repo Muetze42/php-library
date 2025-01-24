@@ -17,7 +17,7 @@ class IsBicMacro
          */
         return function (string $value): bool {
             return Str::isMatch(
-                '/^[A-Z]{4}[-]{0,1}[A-Z]{2}[-]{0,1}[A-Z0-9]{2}[-]{0,1}[0-9]{3}$/',
+                '/^[A-Za-z]{4} ?[A-Za-z]{2} ?[A-Za-z0-9]{2} ?([A-Za-z0-9]{3})?$/',
                 $value
             );
         };
