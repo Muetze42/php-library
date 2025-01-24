@@ -29,12 +29,4 @@ trait FromNameTrait
             return self::getDefault();
         }
     }
-
-    /**
-     * Default case for tryFromName.
-     */
-    protected static function getDefault(): self
-    {
-        throw new \RuntimeException('Implement default case for this enum');
-    }
 }
