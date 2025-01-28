@@ -17,7 +17,7 @@ class Second
      */
     public static function hours(float $hours = 1): int
     {
-        return static::minutes($hours * 60);
+        return round($hours * 3600);
     }
 
     /**
@@ -25,7 +25,7 @@ class Second
      */
     public static function days(float $days = 1): int
     {
-        return static::hours($days * 24);
+        return round($days * 86400);
     }
 
     /**
@@ -33,11 +33,11 @@ class Second
      */
     public static function weeks(float $weeks = 1): int
     {
-        return static::days($weeks * 7);
+        return round($weeks * 604800);
     }
 
     /**
-     * Convert weeks microsecond to seconds and return as integer.
+     * Convert weeks microseconds to seconds and return as integer.
      */
     public static function microseconds(float $microseconds = 1): int
     {
