@@ -35,4 +35,12 @@ class Second
     {
         return static::days($weeks * 7);
     }
+
+    /**
+     * Convert weeks microsecond to seconds and return as integer.
+     */
+    public static function microseconds(float $microseconds = 1): int
+    {
+        return round($microseconds / 1000000);
+    }
 }
