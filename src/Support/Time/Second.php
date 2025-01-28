@@ -1,6 +1,6 @@
 <?php
 
-namespace NormanHuth\Library\Support;
+namespace NormanHuth\Library\Support\Time;
 
 class Second
 {
