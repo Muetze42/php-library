@@ -58,7 +58,7 @@ class SentryController
         $message = $url . ' ' . $type . ': ' . data_get($data, 'exception.values.0.value');
 
         if ($this->logDriver && config('logging.channels.' . $this->logDriver)) {
-            $frames = $data['exception']['values'][0]['stacktrace']['frames'];
+            $frames = data_get($data, 'exception.values.0.stacktrace.frames', []);
             Log::driver($this->logDriver)
                 ->{$level}($this->formatStacktraceFrames('Frontend ' . $message, $frames));
         }
