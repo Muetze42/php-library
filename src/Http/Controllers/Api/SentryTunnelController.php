@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Log;
 class SentryTunnelController
 {
     /**
+     * The Log Driver for frontend log.
+     */
+    protected ?string $logDriver = 'sentry';
+
+    /**
      * Handle the incoming Sentry error report request.
      */
     public function __invoke(Request $request)
@@ -32,8 +37,8 @@ class SentryTunnelController
 
         $response = Http::withBody($envelope, 'application/x-sentry-envelope')->post($url);
 
-        if (config('logging.channels.sentry')) {
-            Log::driver('sentry')->error($envelope);
+        if ($this->logDriver && config('logging.channels.' . $this->logDriver)) {
+            Log::driver($this->logDriver)->error($envelope);
         }
 
         return response()->json($response->json(), $response->status());
