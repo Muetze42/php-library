@@ -15,7 +15,7 @@ class CleanUpMacro
         /**
          * Remove unwanted characters from a string.
          */
-        return function (string|Stringable|null $value): ?string {
+        return function (string|Stringable|null $value, string $additionalTrimCharacters = ''): ?string {
             if (is_null($value)) {
                 return null;
             }
@@ -24,13 +24,12 @@ class CleanUpMacro
                 $value = $value->toString();
             }
 
+            $value = trim(static::trim($value), $additionalTrimCharacters);
+
             // Remove all non-printable characters
             $value = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/u', '', $value);
 
-            // Remove multiple whitespaces
-            $value = preg_replace('/\s+/', ' ', $value);
-
-            return trim($value);
+            return static::trim(trim($value, $additionalTrimCharacters));
         };
     }
 }
