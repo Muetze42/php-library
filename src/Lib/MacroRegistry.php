@@ -3,6 +3,7 @@
 namespace NormanHuth\Library\Lib;
 
 use Illuminate\Http\Client\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -58,15 +59,29 @@ class MacroRegistry
 
     /**
      * Register all macros from /src/Support/Macros directory.
+     *
+     * @deprecated There is no use case where all macros are needed.
      */
     public static function registerAllMacros(): void
     {
+        static::registerArrMacros();
         static::registerCarbonMacros();
         static::registerCollectionMacros();
-        static::registerArrMacros();
         static::registerHttpResponseMacros();
         static::registerNumberMacros();
+        static::registerRequestMacros();
         static::registerStrMacros();
+    }
+
+    /**
+     * Register all array macros.
+     */
+    public static function registerArrMacros(): void
+    {
+        static::registerInvokableMacrosInPath(
+            dirname(__FILE__, 2) . '/Support/Macros/Arr',
+            Arr::class
+        );
     }
 
     /**
@@ -92,24 +107,13 @@ class MacroRegistry
     }
 
     /**
-     * Register all string macros.
+     * Register all HTTP client response macros.
      */
-    public static function registerStrMacros(): void
+    public static function registerHttpResponseMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Str',
-            Str::class
-        );
-    }
-
-    /**
-     * Register all array macros.
-     */
-    public static function registerArrMacros(): void
-    {
-        static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Arr',
-            Arr::class
+            dirname(__FILE__, 2) . '/Support/Macros/Http/Response',
+            Response::class
         );
     }
 
@@ -125,13 +129,24 @@ class MacroRegistry
     }
 
     /**
-     * Register all HTTP client response macros.
+     * Register all request macros.
      */
-    public static function registerHttpResponseMacros(): void
+    public static function registerRequestMacros(): void
     {
         static::registerInvokableMacrosInPath(
-            dirname(__FILE__, 2) . '/Support/Macros/Http/Response',
-            Response::class
+            dirname(__FILE__, 2) . '/Support/Macros/Request',
+            Request::class
+        );
+    }
+
+    /**
+     * Register all string macros.
+     */
+    public static function registerStrMacros(): void
+    {
+        static::registerInvokableMacrosInPath(
+            dirname(__FILE__, 2) . '/Support/Macros/Str',
+            Str::class
         );
     }
 }
