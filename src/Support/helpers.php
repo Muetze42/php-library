@@ -1,5 +1,10 @@
 <?php
 
+namespace NormanHuth\Library\Support;
+
+use Illuminate\Support\Str;
+use InvalidArgumentException;
+
 /**
  * Convert time-string (1d, 1w, 1y) to minutes.
  *
