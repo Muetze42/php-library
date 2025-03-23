@@ -7,8 +7,14 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\NewAccessToken;
 
+/**
+ * @template TToken of \Laravel\Sanctum\Contracts\HasAbilities = \NormanHuth\Library\Packages\Sanctum\Refreshable\PersonalAccessToken
+ */
 trait HasApiTokensTrait
 {
+    /**
+     * @use \Laravel\Sanctum\HasApiTokens<TToken>
+     */
     use HasApiTokens;
 
     /**
