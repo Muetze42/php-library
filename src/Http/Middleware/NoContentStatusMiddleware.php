@@ -17,10 +17,10 @@ class NoContentStatusMiddleware
     {
         $response = $next($request);
 
-        if (empty($response->getContent())) {
-            return $response->setStatusCode(Response::HTTP_NO_CONTENT);
+        if (empty($response->original)) {
+            $response->setStatusCode(Response::HTTP_NO_CONTENT);
         }
 
-        return $next($request);
+        return $response;
     }
 }
