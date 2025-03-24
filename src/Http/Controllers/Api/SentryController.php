@@ -54,8 +54,8 @@ class SentryController
             $level = 'error';
         }
         $url = data_get($data, 'request.url');
-        $type = data_get($data, 'exception.values.0.type');
-        $message = $url . ' ' . $type . ': ' . data_get($data, 'exception.values.0.value');
+        $type = data_get($data, 'exception.values.0.type', '');
+        $message = $url . ' ' . $type . ': ' . data_get($data, 'exception', print_r($data, true));
 
         if ($this->logDriver && config('logging.channels.' . $this->logDriver)) {
             $frames = data_get($data, 'exception.values.0.stacktrace.frames', []);
