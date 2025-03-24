@@ -54,8 +54,18 @@ class SentryController
             $level = 'error';
         }
         $url = data_get($data, 'request.url');
-        $type = data_get($data, 'exception.values.0.type', '');
-        $message = $url . ' ' . $type . ': ' . data_get($data, 'exception', print_r($data, true));
+        $type = data_get($data, 'exception.values.0.type');
+
+        $message = data_get($data, 'exception.values.0.messages', data_get($data, 'exception'));
+
+        if (is_array($message)) {
+            $message = print_r($message, true);
+        }
+        if (! is_string($message)) {
+            $message = (string) $message;
+        }
+
+        $message = $url . ' ' . $type . ': ' . $message;
 
         if ($this->logDriver && config('logging.channels.' . $this->logDriver)) {
             $frames = data_get($data, 'exception.values.0.stacktrace.frames', []);
