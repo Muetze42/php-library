@@ -112,6 +112,14 @@ class SentryController
         $contents = [$message];
 
         foreach ($stacktrace as $key => $frame) {
+            foreach (['filename', 'lineno', 'colno', 'function'] as $part) {
+                if (! isset($frame[$part])) {
+                    $contents[] = print_r($frame, true);
+
+                    continue 2;
+                }
+            }
+
             $contents[] = '#' . $key . ' ' . $frame['filename'] .
                 '(' . $frame['lineno'] . ':' . $frame['colno'] . '): ' . $frame['function'];
         }
