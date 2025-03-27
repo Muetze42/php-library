@@ -49,6 +49,7 @@ class SentryController
             preg_split('/\r\n|\r|\n/', $request->getContent())
         )[2];
 
+        /** @var \Psr\Log\LogLevel $level */
         $level = data_get($data, 'level');
         if (! in_array($level, $this->errorLevels)) {
             $level = 'error';
@@ -73,7 +74,19 @@ class SentryController
                 ->{$level}($this->formatStacktraceFrames('Frontend ' . $message, $frames));
         }
 
+        if (! $this->shouldReport($type, $message)) {
+            return;
+        }
+
         $this->throwException($type, $message);
+    }
+
+    /**
+     * Determine if the exception should be reported.
+     */
+    protected function shouldReport(string $type, string $message): bool
+    {
+        return true;
     }
 
     /**
