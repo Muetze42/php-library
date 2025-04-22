@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use NormanHuth\Library\ClassFinder;
@@ -67,6 +68,7 @@ class MacroRegistry
         static::registerArrMacros();
         static::registerCarbonMacros();
         static::registerCollectionMacros();
+        static::registerConfigMacros();
         static::registerHttpResponseMacros();
         static::registerNumberMacros();
         static::registerRequestMacros();
@@ -85,7 +87,7 @@ class MacroRegistry
     }
 
     /**
-     * Register all string macros.
+     * Register all carbon macros.
      */
     public static function registerCarbonMacros(): void
     {
@@ -96,13 +98,24 @@ class MacroRegistry
     }
 
     /**
-     * Register all string macros.
+     * Register all collection macros.
      */
     public static function registerCollectionMacros(): void
     {
         static::registerInvokableMacrosInPath(
             dirname(__FILE__, 2) . '/Support/Macros/Collection',
             Collection::class
+        );
+    }
+
+    /**
+     * Register all config macros.
+     */
+    public static function registerConfigMacros(): void
+    {
+        static::registerInvokableMacrosInPath(
+            dirname(__FILE__, 2) . '/Support/Macros/Config',
+            Config::class
         );
     }
 
