@@ -5,7 +5,6 @@ namespace NormanHuth\Library\Commands\Development;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Foundation\Console\ConsoleMakeCommand as Command;
 use Illuminate\Support\Str;
-use InvalidArgumentException;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'make:command')]
