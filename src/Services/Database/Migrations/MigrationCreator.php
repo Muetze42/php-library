@@ -4,6 +4,8 @@ namespace NormanHuth\Library\Services\Database\Migrations;
 
 use Illuminate\Database\Migrations\MigrationCreator as Creator;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class MigrationCreator extends Creator
 {
@@ -45,11 +47,23 @@ class MigrationCreator extends Creator
      */
     public static function getFormattedDatePrefix(): string
     {
-        $files = glob(database_path('migrations/*'));
+        $files = File::glob(database_path('migrations/*'));
         $today = now()->format('Y_m_d_');
         $files = array_filter($files, fn (string $file) => static::isFileFromToday($file, $today));
+        $max = 0;
 
-        return $today . str_pad((count($files) + 1) * 10, 6, '0', STR_PAD_LEFT);
+        $lastFile = last($files);
+        if ($lastFile) {
+            $parts = explode('_', basename($lastFile));
+
+            if (isset($parts[3]) && is_numeric($parts[3])) {
+                $max = (int) $parts[3];
+            }
+        }
+
+        $next = (int) ceil(($max + 1) / 10) * 10;
+
+        return $today . Str::padLeft(round($next), 6, '0');
     }
 
     /**
