@@ -11,11 +11,14 @@ class DecompressMiddleware
     /**
      * Handle an incoming request.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  string  $decompress
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next, string $decompress = ''): Response
     {
-        if (! $decompress != 'always' && $request->header('Content-Encoding') != 'gzip') {
+        if (! $decompress != 'always' || ! in_array('gzip', (array) $request->header('Content-Encoding'))) {
             return $next($request);
         }
 
