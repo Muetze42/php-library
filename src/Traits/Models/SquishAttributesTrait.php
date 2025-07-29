@@ -18,42 +18,48 @@ trait SquishAttributesTrait
     /**
      * The attributes that are mass should squish.
      *
-     * @var string[]
+     * @retrun  string[]
      */
-    protected array $squishAttributes = [
-        'city',
-        'company',
-        'country',
-        'department',
-        'first_name',
-        'firstname',
-        'full_name',
-        'headline',
-        'house_number',
-        'industry',
-        'label',
-        'last_name',
-        'lastname',
-        'name',
-        'note',
-        'phone',
-        'position',
-        'postal_code',
-        'salutation',
-        'state',
-        'street',
-        'street_name',
-        'street_number',
-        'title',
-        'zip',
-    ];
+    protected function squishAttributes(): array
+    {
+        return [
+            'city',
+            'company',
+            'country',
+            'department',
+            'first_name',
+            'firstname',
+            'full_name',
+            'headline',
+            'house_number',
+            'industry',
+            'label',
+            'last_name',
+            'lastname',
+            'name',
+            'note',
+            'phone',
+            'position',
+            'postal_code',
+            'salutation',
+            'state',
+            'street',
+            'street_name',
+            'street_number',
+            'title',
+            'zip',
+        ];
+    }
 
     /**
      * Additional attributes that are mass should squish.
      *
-     * @var string[]
+     * @retrun  string[]
      */
-    protected array $additionalSquishAttributes = [];
+    protected function additionalSquishAttributes(): array
+    {
+        return [];
+    }
 
     /**
      * Bootstrap the trait.
@@ -61,7 +67,7 @@ trait SquishAttributesTrait
     public static function bootHasSlugTrait(): void
     {
         static::saving(function (Model $model) {
-            $attributes = array_merge($this->squishAttributes, $this->additionalSquishAttributes);
+            $attributes = array_merge($this->squishAttributes(), $this->additionalSquishAttributes());
             foreach ($attributes as $attribute) {
                 if (! empty($model->{$attribute}) && is_string($model->{$attribute})) {
                     $model->{$attribute} = Str::squish($model->{$attribute});
