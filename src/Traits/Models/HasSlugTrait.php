@@ -13,6 +13,8 @@ trait HasSlugTrait
 {
     /**
      * The sluggable attributes.
+     *
+     * @var string[]
      */
     public array $sluggable = ['title', 'name'];
 
