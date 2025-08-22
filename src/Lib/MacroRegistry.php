@@ -61,7 +61,7 @@ class MacroRegistry
     /**
      * Register all macros from /src/Support/Macros directory.
      *
-     * @deprecated There is no use case where all macros are needed.
+     * @deprecated Scheduled for removal in v3. There is no use case where all macros needed.
      */
     public static function registerAllMacros(): void
     {

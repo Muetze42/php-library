@@ -77,10 +77,7 @@
                 "outside"
             ]
         },
-        "no_superfluous_phpdoc_tags": {
-            "allow_mixed": true,
-            "allow_unused_params": true
-        },
+        "no_superfluous_phpdoc_tags": false,
         "no_unneeded_control_parentheses": {
             "statements": [
                 "break",

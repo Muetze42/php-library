@@ -13,6 +13,9 @@ use NormanHuth\Library\Exceptions\CastException;
 use Stringable;
 use Throwable;
 
+/**
+ * @deprecated Scheduled for removal in v3. This class attempts unreliable type casting instead of providing type safety. For strict type validation, use the `\NormanHuth\Library\Support\Type` class instead.
+ */
 class Cast
 {
     use Macroable;
