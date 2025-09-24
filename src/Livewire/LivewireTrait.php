@@ -64,8 +64,6 @@ trait LivewireTrait
 
     /**
      * Transform the given value.
-     *
-     *
      */
     protected function trimString(string $key, mixed $value): mixed
     {
