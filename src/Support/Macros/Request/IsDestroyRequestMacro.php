@@ -14,8 +14,8 @@ class IsDestroyRequestMacro
         /**
          * Determine if the name of the route instance is a destroy request.
          */
-        return function () {
-            return $this->getMethod() == 'DELETE' && $this->routeIs('*.destroy');
+        return function (): bool {
+            return $this->getMethod() === 'DELETE' && $this->routeIs('*.destroy');
         };
     }
 }
