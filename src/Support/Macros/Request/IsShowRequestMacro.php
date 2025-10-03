@@ -14,8 +14,8 @@ class IsShowRequestMacro
         /**
          * Determine if the name of the route instance is a show request.
          */
-        return function () {
-            return $this->getMethod() == 'GET' && $this->routeIs('*.show');
+        return function (): bool {
+            return $this->getMethod() === 'GET' && $this->routeIs('*.show');
         };
     }
 }

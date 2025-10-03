@@ -14,8 +14,8 @@ class IsStoreRequestMacro
         /**
          * Determine if the name of the route instance is a store request.
          */
-        return function () {
-            return $this->getMethod() == 'POST' && $this->routeIs('*.store');
+        return function (): bool {
+            return $this->getMethod() === 'POST' && $this->routeIs('*.store');
         };
     }
 }

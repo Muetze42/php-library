@@ -14,8 +14,8 @@ class IsIndexRequestMacro
         /**
          * Determine if the name of the route instance is an index request.
          */
-        return function () {
-            return $this->getMethod() == 'GET' && $this->routeIs('*.index');
+        return function (): bool {
+            return $this->getMethod() === 'GET' && $this->routeIs('*.index');
         };
     }
 }

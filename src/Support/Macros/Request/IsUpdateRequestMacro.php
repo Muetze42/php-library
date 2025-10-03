@@ -16,8 +16,8 @@ class IsUpdateRequestMacro
          *
          * @mixin \Illuminate\Http\Request
          */
-        return function () {
-            return in_array($this->getMethod(), ['PUT', 'PATCH']) && $this->routeIs('*.update');
+        return function (): bool {
+            return in_array($this->getMethod(), ['PUT', 'PATCH'], true) && $this->routeIs('*.update');
         };
     }
 }
