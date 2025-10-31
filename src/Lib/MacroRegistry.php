@@ -51,13 +51,13 @@ class MacroRegistry
     }
 
     /**
-     * @param  class-string  $macroClass
-     * @param  class-string[]  $macroableClasses
+     * @param  class-string  $macroableClass
+     * @param  class-string[]  $macros
      */
-    public static function macrosFor(string $macroClass, array $macroableClasses): void
+    public static function macrosFor(string $macroableClass, array $macros): void
     {
-        foreach ($macroableClasses as $macroableClass) {
-            static::macro($macroClass, $macroableClass);
+        foreach ($macros as $macro) {
+            static::macro($macro, $macroableClass);
         }
     }
 
