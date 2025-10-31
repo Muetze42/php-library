@@ -39,7 +39,8 @@ class MacroRegistry
         /**
          * @var \Illuminate\Support\Traits\Macroable $macroableClass
          */
-        if (! method_exists($macroClass, '__invoke') || $macroableClass::hasMacro($method)) {
+        // if (! method_exists($macroClass, '__invoke') || $macroableClass::hasMacro($method)) {
+        if (! method_exists($macroClass, '__invoke')) {
             return;
         }
 
