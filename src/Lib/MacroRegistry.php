@@ -27,6 +27,9 @@ class MacroRegistry
 
     /**
      * Register a custom macro using invokable class.
+     *
+     * @param  class-string  $macroClass
+     * @param  class-string  $macroableClass
      */
     public static function macro(string $macroClass, string $macroableClass): void
     {
@@ -45,6 +48,17 @@ class MacroRegistry
         }
 
         $macroableClass::macro($method, (new $macroClass())());
+    }
+
+    /**
+     * @param  class-string  $macroClass
+     * @param  class-string[]  $macroableClasses
+     */
+    public static function macrosFor(string $macroClass, array $macroableClasses): void
+    {
+        foreach ($macroableClasses as $macroableClass) {
+            static::macro($macroClass, $macroableClass);
+        }
     }
 
     /**
