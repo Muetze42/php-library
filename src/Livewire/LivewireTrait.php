@@ -61,12 +61,24 @@ trait LivewireTrait
 
         $value = Str::trim($value);
 
-        if ($value === '') {
+        if (in_array($value, ['', '__rm__', 'null'])) {
             $value = null;
         }
 
         if (is_array($this->{$key}) && isset($parts[1])) {
             data_set($this->{$key}, $parts[1], $value);
+
+            $keyParts = explode('.', strrev($parts[1]), 2);
+
+            if (isset($keyParts[1])) {
+                $property = strrev($keyParts[1]);
+
+                data_set($this->{$key}, $property, array_filter(data_get($this->{$key}, $property)));
+
+                return;
+            }
+
+            return;
         }
 
         $this->{$property} = Str::trim($value);
