@@ -32,6 +32,47 @@ trait LivewireTrait
     }
 
     /**
+     * Get the properties that should be excluded from realtime mapping.
+     */
+    protected function exceptFromRealtimeMappingProperties(): array
+    {
+        return [];
+    }
+
+    /**
+     * Map a given property and its value in real-time, applying necessary transformations.
+     */
+    protected function realtimeMapping(string $property, mixed $value): void
+    {
+        if (! is_string($value)) {
+            return;
+        }
+
+        $parts = explode('.', $property, 2);
+        $key = $parts[0];
+
+        if (in_array($key, $this->exceptFromRealtimeMappingProperties(), true)) {
+            return;
+        }
+
+        if (! property_exists($this, $key)) {
+            return;
+        }
+
+        $value = Str::trim($value);
+
+        if ($value === '') {
+            $value = null;
+        }
+
+        if (is_array($this->{$key}) && isset($parts[1])) {
+            data_set($this->{$key}, $parts[1], $value);
+        }
+
+        $this->{$property} = Str::trim($value);
+    }
+
+    /**
      * Transform the given value.
      *
      * @param  array<string, mixed>  $attributes
@@ -91,7 +132,7 @@ trait LivewireTrait
             return $value;
         }
 
-        return empty($value) ? null : $value;
+        return $value === '' ? null : $value;
     }
 
     /**
