@@ -121,7 +121,7 @@ trait LivewireTrait
     protected function trimString(string $key, mixed $value): mixed
     {
         if (is_array($value) && ! in_array($key, $this->exceptFromTrimStrings(), true)) {
-            return Arr::map($value, fn (array $value): array => $this->trimString($key, $value));
+            return Arr::map($value, fn (mixed $item): mixed => $this->trimString($key, $item));
         }
 
         if ($this->shouldSkipTrimString($key, $value)) {
@@ -137,7 +137,7 @@ trait LivewireTrait
     protected function convertEmptyStringToNull(string $key, mixed $value): mixed
     {
         if (is_array($value) && ! in_array($key, $this->exceptFromConvertEmptyStringsToNull(), true)) {
-            return Arr::map($value, fn (array $value): array => $this->convertEmptyStringToNull($key, $value));
+            return Arr::map($value, fn (mixed $item): mixed => $this->convertEmptyStringToNull($key, $item));
         }
 
         if ($this->shouldSkipConvertEmptyStringToNull($key, $value)) {
