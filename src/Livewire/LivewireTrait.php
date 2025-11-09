@@ -36,7 +36,7 @@ trait LivewireTrait
      */
     protected function exceptFromRealtimeMappingProperties(): array
     {
-        return [];
+        return $this->exceptFromTrimStrings();
     }
 
     /**
